@@ -117,10 +117,14 @@ class Gonglue extends \app\index\controller\Base
     public function strateneirong(){
         // 攻略id
         $strid = input('strid');
-        // 攻略主内容
+        /**
+         * 攻略主内容
+         * @var [type]
+         */
         $usergl = db('str_strate');
         $where['id'] = $strid;
         $resgl = $usergl->where($where)->find();
+        // 头部 指示内容
         $ztyid = $resgl['ztyid'];//主类别id
         $ftyid = $resgl['ftyid'];//副类别id
         $zhuname = db('str_zhulei')->where(['id'=>$ztyid])->find();
@@ -130,7 +134,20 @@ class Gonglue extends \app\index\controller\Base
         $zhuname = $zhuname['name'];
         $this->assign('zhuname',$zhuname);
         $this->assign('funame',$funame);
-        // 攻略详情内容
+        /**
+         * 相关推荐内容
+         */
+        $ztyid = $resgl['ztyid'];//主类别id
+        $wherexgtj['ztyid'] = $ztyid;
+        $wherexgtj['type'] = 8;//普通攻略
+
+        $resxgtjgl = $usergl->where($wherexgtj)->select();
+        $this->assign("resxgtjgl",$resxgtjgl);//相关推荐内容
+        // dump($resxgtjgl);die;
+        /**
+         *  攻略详情内容
+         * @var [type]
+         */
         $usergldetail = db('str_detail');
         $wheredetail['strid'] = $strid;
         $resdetail = $usergldetail->where($wheredetail)->select();
