@@ -40,9 +40,6 @@ class Index extends \app\shopcom\controller\Base
         $whplan['schedule']=5;
         $plan = $this->uri("plan",$whplan);
         $plancount = db("plan")->where($whplan)->count();
-
-      
-
         //获取评论总数
         $whpla['comid']= input('comid');
         $pingluncount = db("com_evaluate")->where($whpla)->count();
@@ -68,7 +65,10 @@ class Index extends \app\shopcom\controller\Base
         // 轮播图
         $wherelbt['comid'] = input('comid');
         $lbt = $this->uri("shop_lbt",$wherelbt);
-        
+        //预约信息
+        $re['comid']= $comid;
+        $re['type'] = 100;
+        $rese=db('reserva')->where($re)->limit(3)->select();
         $this->assign("lbt",$lbt);//轮播图信息
         $this->assign("plan",$plan);//装修案例
 
@@ -83,6 +83,7 @@ class Index extends \app\shopcom\controller\Base
         $this->assign("articletop",$articletop);
         $this->assign("shig",$shig);//施工工地
         $this->assign("shigcount",$shigcount);//工地总数
+        $this->assign("rese",$rese);
         $this->assign("comid",$comid);
         return $this->fetch();
     }

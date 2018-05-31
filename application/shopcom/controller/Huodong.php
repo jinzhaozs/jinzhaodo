@@ -22,8 +22,8 @@ class Huodong extends \app\shopcom\controller\Base
         $time=date("Y-m-d");
         $where['id'] = $comid;
         $whid['comid']=$comid;
-        $whid['zhong_time']= array('gt',$time);
-        $whid['kai_time']= array('lt',$time);
+        $whid['zhong_time']= array('egt',$time);
+        $whid['kai_time']= array('elt',$time);
         //获取服务区域列表
         //获取商家信息
         $request = Request::instance();
@@ -40,8 +40,29 @@ class Huodong extends \app\shopcom\controller\Base
         return $this->fetch();
     }
     
-    //测试
-    public function aa(){
+   
+    public function xiangqing(){
+        $comid = input('comid');
+        $id=input('hdid');
+        $time=date("Y-m-d");
+        $where['id'] = $comid;
+        $whid['comid']=$comid;
+        $whid['id']=$id;
+        $whid['zhong_time']= array('gt',$time);
+        $whid['kai_time']= array('lt',$time);
+        //获取服务区域列表
+        //获取商家信息
+        $request = Request::instance();
+        $urlcanshu = $request->param();
+        $grade = input('grade');
+        $shopcom = $this->uri("shop",$where);
+        $act=db("com_act")->field("id,jianjie,adizhi,actlogo,shuoming,kai_time,zhong_time,lianxir,lxrtel,comid")->where($whid)->find();
+        $province['code']=$shopcom[0]['procode'];
+        $sheng=db('province')->where($province)->find();
+        $this->assign("act",$act);
+        $this->assign("shopcom",$shopcom);
+        $this->assign("comid",$comid);
+        $this->assign("sheng",$sheng);
         return $this->fetch();
     }
 }

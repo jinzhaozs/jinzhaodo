@@ -20,10 +20,11 @@ class Dianping extends \app\shopcom\controller\Base
         //获取商家id
         $comid = input('comid');
         $whereshangjia['id'] = $comid;
+        $wherespxiangxi['shopid']=$comid;
         //获取商家信息
         $shopcom = $this->uri("shop",$whereshangjia);
         // 商家详细信息
-        $spxiangxi = db('shop_do')->field('shejixj,fuwutd,shigongsp,com_koubei')->where($whereshangjia)->find();
+        $spxiangxi = db('shop_do')->field('shejixj,fuwutd,shigongsp,com_koubei')->where($wherespxiangxi)->find();
         $this->assign('spxiangxi',$spxiangxi);
         // dump($shopcomxiangx);die;
         /**

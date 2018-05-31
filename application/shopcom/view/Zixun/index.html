@@ -65,10 +65,10 @@
 		{foreach name="article" item="art"} 
 		<div class="zixun-all">
 			<div class="zixun-left">
-				<a href=""><img src="__STATIC__/uploads/{$art.pic}"></a>
+				<a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$art['id']])}"><img src="__STATIC__/uploads/{$art.pic}"></a>
 			</div>
 			<div class="zixun-middle">
-				<h3>{$art.aname}</h3>
+				<h3><a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$art['id']])}">{$art.aname}</a></h3>
 				<p>{$art.abstract}
 				</p>
 			</div>

@@ -105,21 +105,21 @@
                             </a>
                         </div>
                     </div>
-                    <div class="nav-content-center">
+                     <div class="nav-content-center">
                         <ul class="nav-content-list">
-                            <li>
-                                <a href="javascript:void(0);" class="bottom-thread nav-fzlink">
+                            <li class="have-arrow">
+                                <a href="{:url('/')}" class="bottom-thread nav-fzlink">
                                     首页
                                 </a>
                             </li>
                             <li class="have-arrow">
-                                <a href="javascript:void(0);" class="bottom-thread">
+                                <a href="{:url('/tucei')}" class="bottom-thread">
                                     效果图
                                     <i class="icon icon-arrow"></i>
                                 </a>
                             </li>
                             <li class="have-arrow on">
-                                <a href="javascript:void(0);" class="bottom-thread nav-fzlink">
+                                <a href="{:url('/shopqt')}" class="bottom-thread nav-fzlink">
                                     装修公司
                                     <i class="icon icon-arrow"></i>
                                 </a>
@@ -248,79 +248,41 @@
                         <div class="nav-hover-xgt">
                             <div class="nav-type-box">
                                 <div class="nav-type-list nav-right-dashed nav-type-space">
-                                    <a href="javascript:void(0);" target="_blank">
+                                    <a href="{:url('/tu')}" target="_blank">
                                         <span class="nav-type-title">按空间<i class="icon icon-right-sign"></i></span>
                                     </a>
-                                    <ul>
+                                       <ul>{foreach name="ect_kongjian" item="voect_kongjian"}
                                         <li>
-                                            <a href="javascript:void(0);" target="_blank">客厅</a>
+                                            <a href="{:url('/tu',['kjcode'=>$voect_kongjian.ekcode])}" target="_blank">{$voect_kongjian.ekname}</a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">卧室</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">餐厅</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">厨房</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">卫生间</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">阳台</a>
-                                        </li>
+                                        {/foreach}
+                                        
                                     </ul>
                                 </div>
                                 <div class="nav-type-list nav-right-dashed nav-type-style">
-                                    <a href="javascript:void(0);" target="_blank">
+                                    <a href="{:url('/tcei')}" target="_blank">
                                         <span class="nav-type-title">按风格<i class="icon icon-right-sign"></i></span>
                                     </a>
                                     <ul>
+                                        {foreach name="com_fenggetou" item="vocom_fenggetou"}
                                         <li>
-                                            <a href="javascript:void(0);" target="_blank">简约</a>
+                                            <a href="{:url('/tcei',['fgcode'=>$vocom_fenggetou.zcfgcode])}">{$vocom_fenggetou.zcfgname}</a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">现代</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">中式</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">欧式</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">美式</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">田园</a>
-                                        </li>
+                                        {/foreach}
+                                        
                                     </ul>
                                 </div>
                                 <div class="nav-type-list nav-right-dashed">
-                                    <a href="javascript:void(0);" target="_blank">
+                                    <a href="{:url('/tcei')}" target="_blank">
                                         <span class="nav-type-title">按户型<i class="icon icon-right-sign"></i>
                                     </span>
                                     </a>
-                                    <ul>
+                                    <ul>{foreach name="com_leixingtou" item="vocom_leixingtou"}
                                         <li>
-                                            <a href="javascript:void(0);" target="_blank">小户型</a>
+                                            <a href="{:url('/tcei',['lcode'=>$vocom_leixingtou.lxcode])}" target="_blank">{$vocom_leixingtou.lxname}</a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">一居</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">二居</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">三居</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">四居</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);" target="_blank">复式</a>
-                                        </li>
+                                        {/foreach}
+                                       
                                     </ul>
                                 </div>
                                 <div class="nav-list-img">

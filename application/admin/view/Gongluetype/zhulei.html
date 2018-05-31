@@ -1,0 +1,252 @@
+{extend name="layoutextend"}
+{block name="nav"}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title></title>
+<script type="text/javascript">
+  //缩略图添加
+    function imgPreviews(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("previews");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    //缩略图修改
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    </script>
+</head>
+<body>
+<div style="margin-left: 2%;margin-right: 2%;">
+		<h1 style="text-align: center;">攻略-类别</h1>
+<button class="btn" style="margin-top: -5%;" id="showModel">添加类别</button> 
+	<table class="table table-bordered" >
+
+		<thead>
+			<tr>
+				<!-- <th>id</th> -->
+				<th>编号</th>
+				<th>名称</th>
+				<th>logo</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="yuansuzhijia">
+			
+			{foreach name="res" item="vores"}
+				<tr>
+					<td><span class="id">{$vores.id}</span></td>
+					<td><span class="name">{$vores.name}</span></td>
+					<td><span class="logo" name="{$vores.logo}"  ><img src="__STATIC__/uploads/{$vores.logo}" style="width:50px;height: 50px" class="img"></span></td>
+					<td>
+						<span style=" cursor: pointer;" class="showModel2">修改</span> | 
+						<span style=" cursor: pointer;" class="delcom">删除</span> |
+						 <span style=" cursor: pointer;" class="d"><a style="color: #000;" href="{:url('admin/gongluetype/fuleibie',['zlid'=>$vores.id])}">类别子类</a></span> 
+					</td>
+				</tr>
+			{/foreach}
+		</tbody>
+	</table>
+	<div>{$page}</div>
+</div>
+<!-- 模态框 -->
+<div>
+	 <!-- 模态框添加 -->
+	<div id="modal" class="modal">  
+	    <div class="modal-content">  
+	        <header class="modal-header">  
+	            <h4>类别添加</h4>  
+	            <span class="close">×</span>  
+	        </header>  
+	        <div class="modal-body">  
+	             <form id="formsubadd" class="form-inline" method="post" enctype="multipart/form-data" action="{:url('admin/gonglue/zhuleiadd')}" >
+				<table  style="border-collapse:separate; border-spacing:10px; width: 100%;" >
+					<tr>
+						<td>名称</td>
+						<td>
+							<input type="text"  id="name" name="name" placeholder="请输入名字">
+						</td>
+					</tr>
+					<tr>
+						<td class='wid'>轮播图logo</td>
+						<td>
+							
+							<img id="previews" width="100px" />
+                              <br />
+							<input type="file" name="logo" onchange="imgPreviews(this)" />
+							
+							
+						</td>
+					</tr>
+				</table>
+			</form>
+	        </div>  
+	        <footer class="modal-footer">  
+	            <button id="cancel">取消</button>  
+	            <button id="sure">确定</button>  
+	        </footer>  
+	    </div>  
+	</div> 
+	<!-- 模态框修改 -->
+	<div id="modal2" class="modal">  
+	    <div class="modal-content">  
+	        <header class="modal-header">  
+	            <h4>类别修改</h4>  
+	            <span class="close2">×</span>  
+	        </header>  
+	        <div class="modal-body">  
+	             <form id="formsubedit" class="form-inline" method="post" enctype="multipart/form-data" action="{:url('admin/gonglue/zhuleiedit')}" >
+				<table  style="border-collapse:separate; border-spacing:10px; width: 100%;" >
+					<input type="text" style="display:none;" name="lid" id="lid" value="1">
+					<tr>
+						<td>名称</td>
+						<td>
+							<input type="text"  id="name2" name="name" placeholder="请输入名字">
+						</td>
+					</tr>
+					<tr>
+						<td class='wid'>logo</td>
+						<td>
+							<div id="logo"><img src="" id="preview" style="width:100px;height: 100px" ></div>
+							<input type="file" name="shop_logo" onchange="imgPreview(this)" />
+							
+						</td>
+					</tr>
+				</table>
+			</form>
+	        </div>  
+	        <footer class="modal-footer">  
+	            <button id="cancel2">取消</button>  
+	            <button id="sure2">确定</button>  
+	        </footer>  
+	    </div>  
+	</div>  
+</div>
+
+</body>
+<!-- 模态框js -->
+<script>  
+// 添加
+    var btn = document.getElementById('showModel');  
+    var close = document.getElementsByClassName('close')[0];  
+    var cancel = document.getElementById('cancel');  
+    var sure = document.getElementById('sure');  
+    var modal = document.getElementById('modal');  
+    btn.addEventListener('click', function(){
+        modal.style.display = "block";  
+    });  
+    close.addEventListener('click', function(){  
+        modal.style.display = "none";  
+    });  
+    cancel.addEventListener('click', function(){  
+        modal.style.display = "none";  
+    });  
+    sure.addEventListener('click', function(){  
+    	// 获取信息
+    		$("#formsubadd").submit();
+    	
+        
+    });
+
+    // 修改   
+    var close2 = document.getElementsByClassName('close2')[0];  
+    var cancel2 = document.getElementById('cancel2');  
+    var sure2 = document.getElementById('sure2');  
+    var modal2 = document.getElementById('modal2'); 
+    //模态框展示 
+    $(".showModel2").click(function(){
+    	var lid=$(this).parent().parent().find(".id").html();
+    	var name=$(this).parent().parent().find(".name").html();
+    	var src = $(this).parent().parent().find(".logo img").attr("src");
+    	//赋值
+    	$("#lid").val(lid);
+    	$("#name2").val(name);
+    	$("#logo img").attr("src",src);
+    	// alert(comid);comname
+    	 modal2.style.display = "block";  
+    	});
+    close2.addEventListener('click', function(){  
+        modal2.style.display = "none";  
+    }); 
+    cancel2.addEventListener('click', function(){  
+        modal2.style.display = "none";  
+    });  
+    sure2.addEventListener('click', function(){
+    	// 获取信息
+    	$("#formsubedit").submit();
+    	
+        
+    });
+    // 执行删除
+    $(".delcom").click(function(){
+    	if(confirm("确定删除该类型吗？")){
+    		var comid = $(this).parent().parent().find(".id").html();
+    		// alert(comid);return false;
+    		$(this).parent().parent().remove();
+    		// console.log(aa);return false;
+    		$.ajax({
+	            type:"post",
+	            dataType:'json',
+	            async:false,
+	            url:'{:url("admin/gonglue/zhuleidel")}',
+	            data:{"id":comid},
+	            success:function(dd){
+	                // console.log(dd);
+	                if (dd.code == 200) {
+	                	//jq 删除元素
+
+	                }else{
+	                	alert(msg);
+	                }
+	                 
+	            }
+	        })
+    	}
+    });
+</script> 
+</html>
+{/block}

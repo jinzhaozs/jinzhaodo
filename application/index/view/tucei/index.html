@@ -1,0 +1,192 @@
+
+	{extend name="layoutextend"}
+
+{block name="link"}
+<style type="text/css">
+.nav-my-tubatu .nav-my-tubatu-title {
+    width: 74px;
+    box-sizing: initial;
+}
+.merchant-center .merchant-center-title {
+    width: 64px;
+    box-sizing: initial;
+}
+</style>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/index/tucei/xiaoguo.css">
+	<link rel="stylesheet" href="__STATIC__/index/tucei/css/style.css">
+
+	<div class="every-show">
+		<ul>
+			<li>效果图</li>
+			<li>免费设计</li>
+			<li>定制设计</li>
+			<li>云设计</li>
+		</ul>
+	</div>
+		<div class="banner">
+			<div class="demo">
+				<a class="control prev"></a><a class="control next abs"></a><!--自定义按钮，移动端可不写-->
+				<div class="slider"><!--主体结构，请用此类名调用插件，此类名可自定义-->
+					<ul>
+						{foreach name="lbt" item="lb"}
+						<li><a href=""><img src="__STATIC__/uploads/{$lb.logo}" alt="{$lb.lbtname}" /></a></li>
+						{/foreach}
+						
+						
+					</ul>
+				</div>
+			</div>
+			<div class="songbi-siqu">
+				<div class="songbi-left">
+					<dl id="songbione">
+						<dt>
+							<span>空间</span><br/>
+							<em>HOME</em>
+						</dt>
+						{foreach name="kongjian" item="kj"}
+						<dd><a href="{:url('/tu',['kjcode'=>$kj.ekcode])}">{$kj.ekname}</a></dd>
+						{/foreach}
+						
+						<div class="songbi-yin">
+							<ul>
+								{foreach name="kongjians" item="kjs"}
+								<li><a href="{:url('/tu',['kjcode'=>$kjs.ekcode])}">{$kjs.ekname}</a></li>
+								{/foreach}
+								
+										
+							</ul>		
+						</div>
+					</dl>
+
+				</div>
+				<div class="songbi-left">
+					<dl class="songbitwo">
+						<dt>
+							<span>局部</span><br/>
+							<em>LAYOUT</em>
+						</dt>
+						{foreach name="jubu" item="jb"}
+						<dd><a href="{:url('/tu',['jbcode'=>$jb.ejcode])}">{$jb.ejname}</a></dd>
+						{/foreach}
+
+						<div class="songbi-yinone">
+							<ul>
+								{foreach name="jubus" item="jbs"}
+								<li><a href="{:url('/tu',['jbcode'=>$jbs.ejcode])}">{$jbs.ejname}</a></li>
+								{/foreach}
+
+										
+							</ul>		
+						</div>
+					</dl>
+				</div>
+				<div class="songbi-left">
+					<dl class="songbithere">
+						<dt>
+							<span>户型</span><br/>
+							<em>TYPE</em>
+						</dt>
+						{foreach name="huxing" item="hx"}
+						<dd><a href="{:url('/tcei',['lcode'=>$hx.lcode])}">{$hx.lname}</a></dd>
+						{/foreach}
+						
+						<div class="songbi-yintwo">
+							<ul>
+								{foreach name="huxings" item="hxs"}
+								<li><a href="{:url('/tcei',['lcode'=>$hxs.lcode])}">{$hxs.lname}</a></li>
+								{/foreach}
+										
+							</ul>		
+						</div>
+					</dl>
+					
+					
+				</div>
+				<div class="songbi-left">
+					<dl class="songbifour">
+						<dt>
+							<span>风格</span><br/>
+							<em>TYPE</em>
+						</dt>
+						{foreach name="fengge" item="fg"}
+						<dd><a href="{:url('/tcei',['fgcode'=>$fg.zcfgcode])}">{$fg.zcfgname}</a></dd>
+						{/foreach}
+						<div class="songbi-yinthere">
+							<ul>
+								{foreach name="fengges" item="fgs"}
+								<li><a href="{:url('/tcei',['fgcode'=>$fgs.zcfgcode])}">{$fgs.zcfgname}</a></li>
+								{/foreach}
+										
+										
+							</ul>		
+						</div>
+					</dl>
+				</div>
+				<div class="songbi-left">
+					<dl class="songbifive">
+						<dt>
+							<span>公装</span><br/>
+							<em>PUBLIC</em>
+						</dt>
+						{foreach name="leixing" item="lx"}
+						<dd><a href="{:url('/tcei',['lxcode'=>$lx.lxcode])}">{$lx.lxname}</a></dd>
+						{/foreach}
+
+						<div class="songbi-yinfour">
+							<ul>
+								{foreach name="leixings" item="lxs"}
+								<li><a href="{:url('/tcei',['lxcode'=>$lxs.lxcode])}">{$lxs.lxname}</a></li>
+						{/foreach}
+								
+													
+							</ul>		
+						</div>
+					</dl>
+				</div>
+				
+			</div>
+			
+		</div>
+	<div  id="all">
+		<div class="xiaoguo">
+			
+			
+				<div class="xiaoguo-xia">
+					<ul>
+						{foreach name="tucei" item="tc"}
+						<li><a href="{:url('/tceixq',['tcid'=>$tc.id,'tcname'=>$tc.name])}"><img src="__STATIC__/uploads/{$tc.logo}"></a>
+							<p><span><i><img src="__STATIC__/index/tucei/images/star.jpg"></i>收藏</span><em>装成这样要花多少钱？</em></p>
+						</li>
+						{/foreach}
+						
+
+					</ul>
+				</div>
+				
+		</div>
+		
+	 </div>		
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<!-- <script src="js/jquery.min.js"></script> -->
+	<script src="__STATIC__/index/tucei/js/YuxiSlider.jQuery.min.js"></script>
+	<script>
+	$(".slider").YuxiSlider({
+		width:1000, //容器宽度
+		height:360, //容器高度
+		control:$('.control'), //绑定控制按钮
+		during:4000, //间隔4秒自动滑动
+		speed:600, //移动速度0.8秒
+		mousewheel:true, //是否开启鼠标滚轮控制
+		direkey:true //是否开启左右箭头方向控制
+	});
+	</script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+            $(".have-arrow").each(function(){
+                $(this).attr("class","have-arrow");
+            });
+            $(".have-arrow").eq(1).attr("class","have-arrow on");
+        });
+    </script>
+{/block}

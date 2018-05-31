@@ -1,0 +1,693 @@
+
+    {extend name="layoutextend"}
+
+{block name="link"}
+    <div class="container clear">
+            <div class="zgs_cl_left">
+
+                <div class="zgs_select_type">
+                    <input id="new_order_Info" value="" type="hidden">
+                    <h1 class="zgs_meitu_nav">
+        <ul>
+            <li class="has_arrow">
+                <a href="javascript:void(0);">北京装修公司</a>
+                <span class="nav_arrow_right"></span>
+            </li>
+            <!-- 条件 -->
+            <li class="nav_type_select">
+            <!-- 类型 -->
+            {neq name="$comtype['lxcode']" value=""}
+                <a class="comtypedel">
+                <em>
+                    <span id="lxcode" style="display: none;">{$comtype['lxcode']}</span>
+                    <span>{$comtype['lxname']}</span>
+                        <!-- <button><a class="comtypedel" href="{:url('/index/index/index')}">x</a></button> -->
+                </em>
+                <span class="nav_close"></span>
+                </a>
+            {/neq}
+            <!-- 服务区域 -->
+            {neq name="$comservice['qycode']" value=""}
+                <a class="comservicedel">
+                <em>
+                    <span id="qycode" style="display: none;">{$comservice['qycode']}</span>
+                    <span>服务区域: {$comservice['qyname']}</span>
+                    <!-- <button><a class="comservicedel" href="{:url('/index/index/index')}">x</a></button> -->
+                </em>
+                <span class="nav_close"></span>
+                </a>
+            
+            {/neq}
+            <!-- 承接价位 -->
+            {neq name="$comprice['pcode']" value=""}
+                <a class="compricedel">
+                <em>
+                    <span id="pcode" style="display: none;">{$comprice['pcode']}</span>
+                    <span>服务区域: {$comprice['pname']}</span>
+                    <!-- <button><a class="comservicedel" href="{:url('/index/index/index')}">x</a></button> -->
+                </em>
+                <span class="nav_close"></span>
+                </a>
+            
+            {/neq}
+            <!-- 装修风格 -->
+            {neq name="$comstyle['zcfgcode']" value=""}
+                <a class="comstyledel">
+                <em>
+                    <span id="zcfgcode" style="display: none;">{$comstyle['zcfgcode']}</span>
+                    <span>{$comstyle['zcfgname']}</span>
+                    <!-- <button><a class="comservicedel" href="{:url('/index/index/index')}">x</a></button> -->
+                </em>
+                <span class="nav_close"></span>
+                </a>
+            
+            {/neq}
+            <!-- 所在区域 -->
+            {neq name="$comarea['qycode']" value=""}
+                <a class="comareadel">
+                <em>
+                    <span id="szqycode" style="display: none;">{$comarea['qycode']}</span>
+                    <span>所在区域: {$comarea['qyname']}</span>
+                    <!-- <button><a class="comservicedel" href="{:url('/index/index/index')}">x</a></button> -->
+                </em>
+                <span class="nav_close"></span>
+                </a>
+            
+            {/neq}
+            </li>
+        </ul>
+        <em class="xgt_meitu_nav_total">共 <b>{$count}</b> 结果</em>
+        <a href="javascript:void(0);" target="_blank" class="lnk_r" title="北京装修公司排名">北京装修公司哪家强？</a>
+    </h1>
+    <!-- form 隐藏条件 -->
+    <form id="jiaojianquyu" action="{:url('/zxgs')}" style="display: none;" method="get">
+        类型：<input type="text" id="leixing" name="type" value="{$comtype['lxcode']}">
+        服务区域：<input type="text" id="fuwuquyu" name="service" value="{$comservice['qycode']}">
+        承接价位：<input type="text" id="chengjiejw" name="price" value="{$comprice['pcode']}">
+        专长风格：<input type="text" id="zhuanchangfg" name="style" value="{$comstyle['zcfgcode']}">
+        所在区域：<input type="text" id="suozaiquyu" name="area" value="{$comarea['qycode']}">
+        <input type="submit" value="提交" >
+    </form>
+                    <!--类型-->
+                    <dl class="zgs_st_dl">
+                        <dt>类型</dt>
+                        <dd class="height_40">
+                            {foreach name="com_leixing" item="vocom_leixing"}
+                            <span >
+                                <a class="comtype">
+                                    <input type="text" class="leixingid" style="display: none;" value="{$vocom_leixing.lxcode}">
+                                    {$vocom_leixing.lxname}
+                                </a>
+                            </span>
+                            {/foreach}
+                            <span class="xgt_nav_showMore" onclick="javascript:showMore(this)" title="点击展开"></span></dd>
+                    </dl>
+                    <dl class="zgs_st_dl">
+                        <dt>服务区域</dt>
+                        <!--服务区域-->
+                        <dd class="height_40">
+                            {foreach name="com_fuwuquyu" item="vocom_fuwuquyu"}
+                                <span>
+                                    <a class="comservice">
+                                    <input type="text" class="qyyuid" style="display: none;" value="{$vocom_fuwuquyu.qycode}">
+                                        {$vocom_fuwuquyu.qyname}
+                                    </a>
+                                </span>
+                            {/foreach}
+                            <span class="xgt_nav_showMore" onclick="javascript:showMore(this)" title="点击展开"></span></dd>
+                    </dl>
+
+                    <dl class="zgs_st_dl">
+                        <dt>承接价位</dt>
+                        <!--价位-->
+                        <dd>
+                            {foreach name="com_price" item="vocom_price"}
+                                <span>
+                                    <a class="comprice">
+                                    <input type="text" class="jiaweiid" style="display: none;" value="{$vocom_price.pcode}">
+                                        {$vocom_price.pname}
+                                    </a>
+                                </span>
+                            {/foreach}
+                        </dd>
+                    </dl>
+                    <dl class="zgs_st_dl" style="display: none;">
+                        <dt>专长风格</dt>
+                        <!--风格-->
+                        <dd>
+                            {foreach name="com_fengge" item="vocom_fengge"}
+                            <span>
+                                <a class="comstyle">
+                                <input type="text" class="zhuanchangfgid" style="display: none;" value="{$vocom_fengge.zcfgcode}">
+                                    {$vocom_fengge.zcfgname}
+                                </a>
+                            </span>
+                            {/foreach}
+                        </dd>
+                    </dl>
+                    <dl class="zgs_st_dl" style="display: none;">
+                        <dt>所在区域</dt>
+                        <!--所在区域-->
+                        <dd class="height_40">
+                            {foreach name="com_fuwuquyu" item="vocom_fuwuquyu"}
+                            <span>
+                                <a class="comarea">
+                                <input type="text" class="suozaiquyuid" style="display: none;" value="{$vocom_fuwuquyu.qycode}">
+                                    {$vocom_fuwuquyu.qyname}
+                                </a>
+                            </span>
+                            {/foreach}
+                            <span class="xgt_nav_showMore" onclick="javascript:showMore(this)" title="点击展开"></span></dd>
+                    </dl>
+                    <p class="more_type">
+                        <a href="javascript:void(0)">更多<em></em></a>
+                    </p>
+                </div>
+                <div class="zgs_rank">
+                    <ul>
+                        <li class="zr_hot on">
+                            <a href="javascript:void(0);" rel="nofollow">
+                                热门排序
+                            </a>
+                        </li>
+
+                        <li class="has_arrow ">
+                            <a href="javascript:void(0);" rel="nofollow">
+                                <em>综合实力</em>
+                                <!--<span ></span>-->
+                            </a>
+                        </li>
+                        <li class="has_arrow ">
+                            <a href="javascript:void(0);" rel="nofollow">
+                                <em>口碑飙升</em>
+                                <!--<span ></span>-->
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="fr">
+                        <!-- <div class="zgsr_fy">
+                            <a href="javascript:void(0)" class="zgsr_fy_left" rel="nofollow"></a>
+                            <a href="javascript:void(0)" class="zgsr_fy_right" rel="nofollow"></a>
+                            <span>
+                            <em>1</em>/84                       </span>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="zgs_company_ad_icon">
+                    <!--<span class="ad_icon" style="display: inline;"></span>-->
+                </div>
+                <!-- 公司详情 -->
+                <div class="zgs_company_list ">
+                    <ul style="">
+                        {foreach name="shop" item="voshop"}
+                        <li  data-ad="">
+                            <div class="zgscl_container">
+                                <a href="javascript:void(0);" target="_blank" class="zgscl_logo" rel="nofollow">
+                                    <img src="__STATIC__/uploads/{$voshop.logo}" alt="{$voshop.name}" width="138" height="138">
+                                </a>
+                                <div class="zgsclc_data">
+                                    <span class="zd_one">
+                              <h3>
+                                  <!-- <a href="{:url('/shopcom')}" target="_blank" class="zgscl_name">{$voshop.name}</a> -->
+                                  <a href="{:url('/shopcom',['comid'=>$voshop.id])}" >{$voshop.name}</a>
+                              </h3>
+                                                        </span>
+                                    <span class="zd_two">
+                                    <!-- 营业执照 -->
+                                    {eq name="$voshop.bl" value="1"}
+                                        <i class="zdq_3" title="该公司营业执照已认证"></i>                              
+                                    {else/}
+                                        <i class="zdq_3_no" ></i>                              
+                                    {/eq} 
+                                <!-- 认证公司 -->
+                                {eq name="$voshop.rz" value="1"}
+                                <i class="zdq_4" title="认证公司"></i>  
+                                {else/}
+                                <i class="zdq_4_no" ></i>  
+                                
+                                {/eq}  
+                                <!-- 判断是否有优惠活动 -->
+                                {eq name="$voshop.dis" value="1"}
+                                    <i class="zdq_5"></i> 
+                                {else/}
+                                    <i class="zdq_5_no"></i> 
+                                {/eq}
+                                <!-- 判断是否有保证金 -->
+                                {switch name="$voshop.sum" }
+                                    {case value="0" }
+                                        <i class="zdq_2_no" title=""></i>
+                                    {/case}
+                                    <!-- {case value="值2"}输出内容2{/case} -->
+                                    {default /}
+                                        <i class="zdq_2" title="该公司已交{$voshop.sum}元保障金"></i>
+                                {/switch}
+                              <em title="该公司已交{$voshop.sum}元保障金">{$voshop.sum}元</em>
+                                
+                               <a href="javascript:void(0);" title="设计方案" target="_blank"><i class="zdq_6" title="设计方案"></i><em>{$voshop.fangancount}套</em></a>
+                               <a href="javascript:void(0);" title="工地数量" target="_blank">                                <i class="zdq_7" title="工地数量"></i>
+                                <em>{$voshop.gongdicount}个</em>  </a> 
+                              <a href="javascript:void(0);" title="评价次数" target="_blank" rel="nofollow">
+                                  <i class="zdq_8" title="评价次数"></i>
+                                  <em> {$voshop.gspjcount}次</em> </a>
+                                                        </span>
+                                    <span class="zd_three">
+                                                                <em></em>
+                                {$voshop.dizhi}                                                        </span>
+                                    <div class="zgsclc_consult">
+                                        <a href="javascript:void(0)" class="free_design on" onclick="javascript:companyTender(this,'545874')">免费帮我做设计</a>
+                                        <a href="javascript:void(0)" class="free_price" onclick="javascript:companyTender(this,545874)">免费帮我出报价</a>
+                                    </div>
+
+                                </div>
+                                <div class="zgsclc_koubei big_city">
+                                    <div class="zgsclc_level">
+                                        <span class="text_gsdj">认证级别</span>
+                                        <div class="zgsclc_little_level">
+                                            <a href="javascript:void(0);" target="_blank" rel="nofollow" class="zgscl_golden zgscl_a_gloden">
+                                                <em class="zgs_ico_golden5" title="模范公司"></em>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="clear">
+                                        <span class="koubei_text">口<em style="margin:0 6px;">碑</em>值</span>
+                                        <a class="zgscl_a_gloden" href="javascript:void(0);">
+                                            <span class="koubei_number">1000</span>
+                                        </a>
+                                    </div>
+                                    <div class="clear">
+                                        <span class="koubei_text">好<em style="margin:0 6px;">评</em>率</span>
+                                        <a class="zgscl_a_gloden" target="_blank" href="javascript:void(0);">
+                                            <span class="koubei_number haoping-text">{$voshop.com_haoping}%</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="special_service">
+                                <p>
+                                    已有 <em>10000 </em> 人咨询
+                                </p>
+                            </div>
+                            
+                            <!-- <div class="special_service">
+                                <span class="ad-tips"><i></i>巧装家特约咨询单位</span>
+                            </div> -->
+                            <div class="tell">
+                                <em class="ico_tell"></em>
+                                <p class="tel_phone">免费设计与装修咨询：<i>{$voshop.com_tel}</i></p>
+                            </div>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+                <!-- 分页 -->
+                <div>
+                {$shop->render()}
+                </div>
+            </div>
+            <!-- 条件js -->
+            <script type="text/javascript">
+                
+                //类型点击
+                $(document).on("click",".comtype",function(){
+                    var leixingid = $(this).find(".leixingid").val();//获取类型id
+                    $("#leixing").val(leixingid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+                //类型删除
+                jq(document).on("click",".comtypedel",function(){
+                    var leixingid = "";//获取类型id
+                    $("#leixing").val(leixingid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                })
+                //服务区域点击
+                jq(document).on("click",".comservice",function(){
+                    var qyyuid = $(this).find(".qyyuid").val();//获取类型id
+                    $("#fuwuquyu").val(qyyuid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                    
+                });
+                //服务区域删除
+                jq(document).on("click",".comservicedel",function(){
+                    var qyyuid = "";//获取类型id
+                    $("#fuwuquyu").val(qyyuid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+                //价位点击
+                jq(document).on("click",".comprice",function(){
+                    var jiaweiid = $(this).find(".jiaweiid").val();//获取类型id
+                    $("#chengjiejw").val(jiaweiid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+                //价位删除
+                jq(document).on("click",".compricedel",function(){
+                    var jiaweiid = ""//获取类型id
+                    $("#chengjiejw").val(jiaweiid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+                //风格点击
+                jq(document).on("click",".comstyle",function(){
+                    var zhuanchangfgid = $(this).find(".zhuanchangfgid").val();//获取类型id
+                    $("#zhuanchangfg").val(zhuanchangfgid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+                //风格删除
+                jq(document).on("click",".comstyledel",function(){
+                    var zhuanchangfgid = "";//获取类型id
+                    $("#zhuanchangfg").val(zhuanchangfgid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+                //所在区域点击
+                jq(document).on("click",".comarea",function(){
+                    var suozaiquyuid = $(this).find(".suozaiquyuid").val();//获取类型id
+                    $("#suozaiquyu").val(suozaiquyuid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+                //所在区域删除
+                jq(document).on("click",".comareadel",function(){
+                    var suozaiquyuid = "";//获取类型id
+                    $("#suozaiquyu").val(suozaiquyuid);//赋值
+                    $("#jiaojianquyu").submit();//提交form
+                });
+            </script>
+            <div class="zgs_cl_right">
+                <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/zhuangxiugongsi/zxbj_widget_new.css">
+                <!-- <script  src="http://static.to8to.com/gb___STATIC__/index/js/common_new.js?v=1522225104" type="text/javascript"></script> -->
+                <div class="widget-frame" style="margin-top: 30px;">
+                    <div class="new-container">
+                        <div class="zxbj-calc-wrap zxbj-yqbj">
+                            <input value="1_5_1_4" name="ptag" type="hidden">
+                            <div class="zxbj-calc-header">
+                                <div class="zxbj-calc-budget">
+                                    <div class="num-ge num5"></div>
+                                    <div class="num-shi num9"></div>
+                                    <div class="num-bai num6"></div>
+                                    <div class="num-qian num4"></div>
+                                    <div class="num-wan num3"></div>
+                                    <div class="num-shiwan num1"></div>
+                                </div>
+                            </div>
+                            <div class="zxbj-calc-con" style="display:block">
+                                <div class="element clearfix">
+                                    <select class="province" name="User_Shen" id="zxbjcalcUser_Shen" onchange="changeProvince('zxbjcalcUser_Shen','zxbjcalcUser_City','zxbjcalcUser_Town');">
+
+                                        <option value="" selected="selected">省/市</option>
+                                        <option value="安徽">A 安徽</option>
+                                        <option value="北京">B 北京</option>
+                                        <option value="重庆">C 重庆</option>
+                                        <option value="福建">F 福建</option>
+                                        <option value="广西">G 广西</option>
+                                        <option value="贵州">G 贵州</option>
+                                        <option value="广东">G 广东</option>
+                                        <option value="甘肃">G 甘肃</option>
+                                        <option value="海南">H 海南</option>
+                                        <option value="湖北">H 湖北</option>
+                                        <option value="黑龙江">H 黑龙江</option>
+                                        <option value="河南">H 河南</option>
+                                        <option value="河北">H 河北</option>
+                                        <option value="湖南">H 湖南</option>
+                                        <option value="江苏">J 江苏</option>
+                                        <option value="吉林">J 吉林</option>
+                                        <option value="江西">J 江西</option>
+                                        <option value="辽宁">L 辽宁</option>
+                                        <option value="内蒙古">N 内蒙古</option>
+                                        <option value="宁夏">N 宁夏</option>
+                                        <option value="澳门">O 澳门</option>
+                                        <option value="青海">Q 青海</option>
+                                        <option value="四川">S 四川</option>
+                                        <option value="陕西">S 陕西</option>
+                                        <option value="上海">S 上海</option>
+                                        <option value="山东">S 山东</option>
+                                        <option value="山西">S 山西</option>
+                                        <option value="台湾">T 台湾</option>
+                                        <option value="天津">T 天津</option>
+                                        <option value="西藏">X 西藏</option>
+                                        <option value="香港">X 香港</option>
+                                        <option value="新疆">X 新疆</option>
+                                        <option value="云南">Y 云南</option>
+                                        <option value="浙江">Z 浙江</option>
+                                    </select>
+                                    <select class="city" name="User_City" id="zxbjcalcUser_City" onchange="changeTown('zxbjcalcUser_Shen','zxbjcalcUser_City','zxbjcalcUser_Town');">
+                                        <option value="" selected="selected">市/地区</option>
+                                    </select>
+                                    <div style="display:none;">
+                                        <select class="langSelect" id="zxbjcalcUser_Town" name="User_Town">
+                                            <option selected="selected">县/区</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="element clearfix">
+                                    <input class="text area" name="square" id="bj_square" type="text">
+                                    <b>输入您的房屋面积</b>
+                                    <i class="unit">m²</i>
+                                </div>
+                                <div class="element clearfix szxbj-type">
+                                    <select name="shi" id="szxbj_shi" class="line-shi">
+                                        <option value="1" selected="selected">1室</option>
+                                        <option value="2">2室</option>
+                                        <option value="3">3室</option>
+                                        <option value="4">4室</option>
+                                        <option value="5">5室</option>
+                                        <option value="6">6室</option>
+                                    </select>
+                                    <select name="ting" id="szxbj_ting" class="line-ting">
+                                        <option value="1" selected="selected">1厅</option>
+                                        <option value="2">2厅</option>
+                                        <option value="3">3厅</option>
+                                        <option value="4">4厅</option>
+                                        <option value="5">5厅</option>
+                                        <option value="6">6厅</option>
+                                    </select>
+                                    <select name="chu" id="szxbj_chu" class="second-line line-chu">
+                                        <option value="1" selected="selected">1厨</option>
+                                        <option value="2">2厨</option>
+                                        <option value="3">3厨</option>
+                                    </select>
+                                    <select name="wei" id="szxbj_wei" class="second-line line-wei">
+                                        <option value="1" selected="selected">1卫</option>
+                                        <option value="2">2卫</option>
+                                        <option value="3">3卫</option>
+                                        <option value="4">4卫</option>
+                                        <option value="5">5卫</option>
+                                        <option value="6">6卫</option>
+                                    </select>
+                                    <select name="yangtai" id="szxbj_yangtai" class="second-line line-yangtai">
+                                        <option value="1" selected="selected">1阳台</option>
+                                        <option value="2">2阳台</option>
+                                        <option value="3">3阳台</option>
+                                        <option value="4">4阳台</option>
+                                        <option value="5">5阳台</option>
+                                        <option value="6">6阳台</option>
+                                    </select>
+                                </div>
+                                <div class="element counter-phone clearfix">
+                                    <input class="text" name="chkPhone" type="text">
+                                    <b>输入号码报价结果将发送到您的手机</b>
+                                </div>
+                                <input name="dangci" value="jianzhuang" type="hidden">
+                                <div class="submit-btn-box">
+                                    <a class="submit-btn expose-stream" href="javascript:void(0);" searchtage="1_5_1_4" data-expose="true">
+                                        立即计算
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="zxbj-clac-yqbj" style="display:none">
+                                <p class="glide-text">
+                                    您家的装修预算为
+                                </p>
+                                <p class="glide-unit">
+                                    <span id="yqbj_total">?</span> 万元
+                                </p>
+                                <div>
+                                    <ul class="glide-yqbj">
+                                        <li>材料费：<strong id="materials_cost">?</strong><span>元</span>
+                                        </li>
+                                        <li>人工费：<strong id="labor_cost">?</strong><span>元</span>
+                                        </li>
+                                        <li>设计费：<strong id="design_fees">?</strong><span>元</span>
+                                            <span id="old_design_fees" class="old_fees" style="display:none;">
+                                <span></span>
+                                            <em>元</em>
+                                            </span>
+                                        </li>
+                                        <li>质检费：<strong id="quality_fees">?</strong><span>元</span>
+                                            <span id="old_quality_fees" class="old_fees" style="display:none;">
+                                <span></span>
+                                            <em>元</em>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="zxbj-calc-result" style="display:none">
+                                <p class="calc-explain">* 本价格为毛坯房半包估算价格（不含水电报价），旧房价格由实际工程量决定。</p>
+                                <p class="calc-call holiday-text">* 稍后装修管家将致电您，为您提供免费装修咨询服务。</p>
+                            </div>
+                            <div class="zxbj-calc-hotad">
+                                <a href="javascript:void(0);"><img src="zhuangxiugongsi_files/a.html" alt=""></a>
+                                <p>广告</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript" src="__STATIC__/index/js/zhuangxiugongsi/zxbj_widget_new.js"></script>
+                <script>
+                    (function() {
+                        if(location.href.indexOf('company/') > -1) {
+                            jq('.widget-frame').css('margin-top', '30px');
+                            jq('.zxbj-calc-con .text').css('*width', '213px');
+                        };
+                        if(location.href.indexOf('scene') > -1 || location.href.indexOf('zwj') > -1) {
+                            jq('.widget-frame').css('margin-bottom', '20px');
+                        }
+
+                    })()
+                </script>
+                <div class="zgs_clr_fc">
+                    <span class="zcf_title">在今朝找装修公司价格实惠；<br>施工质量严格监管，不低于行业标准。</span>
+                    <ul>
+                        <li>
+                            <span class="zcf_kxy"></span>
+                            <b>不懂装修注意事项？</b>
+                            <em>今朝300名家装顾问.免费一对一帮你解疑惑。</em>
+                        </li>
+                        <li>
+                            <span class="zcf_bfa"></span>
+                            <b>不懂验房和装修验收？</b>
+                            <em>200名专业质检免费帮你做3次验收。</em>
+                        </li>
+                        <li>
+                            <span class="zcf_bbj"></span>
+                            <b>怕装修猫腻、偷工减料？</b>
+                            <em>"五星服务"、"四标规范"免费帮你做把控。</em>
+                        </li>
+                        <li>
+                            <span class="zcf_bbz"></span>
+                            <b>怕给了钱，质量没保障？</b>
+                            <em>"装修保"免费帮你保障，满意了才付装修款。</em>
+                        </li>
+                    </ul>
+                    <input value="享受省心的装修服务" class="zcz_btn" onclick="companyTender(this);" type="button">
+                </div>
+                <!-- 广告埋点 -->
+                <!--<div class="ad-rabbit zgs_clr_ad" id="cpy_idx_mid_rt_1" style="display: block;">
+
+                    <div class="ad-mark normal"></div>
+                </div>
+                <div class="ad-rabbit zgs_clr_ad" id="691f547e700ff2a8" style="display: block;">
+                    <a href="http://www.to8to.com/yezhu/decorateStyle.php?ptag=1_3_5_4" target="_blank" class="ad-banner-link" data-ptag="" data-exptag=""><img src="zhuangxiugongsi_files/fd7cc2b2d2b3b97e12d684ebd81baa6034422.png" class="" style="width: 245px; height: 300px;"></a>
+                </div>-->
+                <!--各种热点-->
+                <!--          <div class="zgs_clr_ad "><a href="http://www.to8to.com/company/zxb.php" hidefocus target="_blank" rel="nofollow"><img src="http://pic.to8to.com//hot/day_180307/20180307_8ef0df3216e829f1f01c1JyRGF9zRAen.png" width="245" height="300" alt="公司品宣" /></a></div>
+        <div class="zgs_clr_ad "></div>
+        <div class="zgs_clr_ad "></div>
+        <div class="zgs_clr_ad "></div>
+             -->
+
+                <div class="zgs_clr_rank">
+                    <span class="zcf_title"><a href="javascript:void(0);" target="_blank">北京装修公司排行榜</a> </span>
+
+                    <em class="zgs_clr_rank_t">装修知名品牌</em>
+                    <ul class="zgs_clr_rank_list">
+
+                        <li>
+                            <a href="javascript:void(0);" target="_blank" title="居众装饰集团"><i class="zgs_ico_crown"></i><span>居众装饰集团</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" target="_blank" title="乐蜂精装"><i class="zgs_ico_crown"></i><span>乐蜂精装</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" target="_blank" title="轻舟装饰"><i class="zgs_ico_crown"></i><span>轻舟装饰</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="zgs_clr_lm">
+                    <ul>
+                        <li>
+                            <dl>
+                                <dt>
+                    <h2><a id="lw_zx_yezhu" href="javascript:void(0);" target="_blank" hidefocus="">北京装修报价</a></h2>
+                    </dt>
+                                <dd>
+                                    <a href="javascript:void(0);" target="_blank" title="">2016最新北京装修主材费用</a>
+                                    <a href="javascript:void(0);" target="_blank" title="">2016年最新北京装修报价单(提供下载)</a>
+                                    <a href="javascript:void(0);" target="_blank" title="">2016最新北京家庭装修预算价格表</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt>
+                    <h2><a href="javascript:void(0);" target="_blank" hidefocus="">北京装修设计</a></h2>
+                    </dt>
+                                <dd>
+                                    <a href="javascript:void(0);" target="_blank" title="">北京别墅装修公司排名前五推荐</a>
+                                    <a href="javascript:void(0);" target="_blank" title="">盘点2016年北京最好的装修公司</a>
+                                    <a href="javascript:void(0);" target="_blank" title="">2016装修风格 9大最流行的装修风格</a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li class="border_none">
+                            <dl>
+                                <dt><a href="javascript:void(0);" target="_blank" hidefocus="">北京本地资讯</a></dt>
+                                <dd>
+                                    <a href="javascript:void(0);" target="_blank" title="">想要绕开北京陷阱装修 需提前弄懂装修合同</a>
+                                    <a href="javascript:void(0);" target="_blank" title="">北京市房屋租赁协议内容介绍</a>
+                                    <a href="javascript:void(0);" target="_blank" title="">北京普通住房标准是什么?</a>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="zgs_clr_newOrder">
+                    <h2>北京装修公司最新签单</h2>
+                    <dl>
+                        <dt>
+                <span class="zcno_one">业主</span>
+                <span class="zcno_two">小区名称</span>
+                <span class="zcno_three">公司名称</span>
+            </dt>
+                    </dl>
+
+                    <div class="dlwrap">
+                        <dl style="margin-bottom: -6.38504px;">
+                            <dd>
+                                <span class="zcno_one" title="申(女士)">申(女士)</span>
+                                <span class="zcno_two" title=""></span>
+                                <a class="zcno_three" href="javascript:void(0);" target="_blank" title="中海建林（北京）装饰工程有限责任公司"> 中海建林装饰</a>
+                            </dd>
+                            <dd>
+                                <span class="zcno_one" title="李(女士)">李(女士)</span>
+                                <span class="zcno_two" title=""></span>
+                                <a class="zcno_three" href="javascript:void(0);" target="_blank" title="北京自由家装饰工程有限公司"> 自由家装饰</a>
+                            </dd>
+                            <dd>
+                                <span class="zcno_one" title="王(女士)">王(女士)</span>
+                                <span class="zcno_two" title="望京">望京</span>
+                                <a class="zcno_three" href="javascript:void(0);" target="_blank" title="中海建林（北京）装饰工程有限责任公司"> 中海建林装饰</a>
+                            </dd>
+                            <dd>
+                                <span class="zcno_one" title="施(先生)">施(先生)</span>
+                                <span class="zcno_two" title="三里河一区">三里河一区</span>
+                                <a class="zcno_three" href="javascript:void(0);" target="_blank" title="北京佳时特装饰工程有限公司"> 佳时特装饰</a>
+                            </dd>
+                            <dd>
+                                <span class="zcno_one" title="裴(女士)">裴(女士)</span>
+                                <span class="zcno_two" title=""></span>
+                                <a class="zcno_three" href="javascript:void(0);" target="_blank" title="北京中科达龙装饰工程有限公司"> 中科达龙装饰</a>
+                            </dd>
+                            <dd>
+                                <span class="zcno_one" title="王(先生)">王(先生)</span>
+                                <span class="zcno_two" title=""></span>
+                                <a class="zcno_three" href="javascript:void(0);" target="_blank" title="北京泰峰伟业装饰设计有限公司"> 泰峰装饰</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+{/block}        
+        

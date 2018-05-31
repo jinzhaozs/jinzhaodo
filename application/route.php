@@ -20,6 +20,17 @@ Route::rule('/aa','index/Index/aa');//查询
 Route::rule('/regis','index/Index/regis');//注册页面
 Route::rule('/index/Index/doregis','index/Index/doregis');//执行注册
 /**
+ * 图册
+ */
+Route::rule('/tucei','index/Tucei/index');//图册
+Route::rule('/tu','index/Tu/index');//图册-图片
+Route::rule('/tcei','index/Tcei/index');//图册-图册
+Route::rule('/tceixq','index/Tuceixq/index');//图册-详情
+/**
+ * 前台装修公司
+ */
+Route::rule('/shopqt','index/Index/shopqt');//查询
+/**
  * 前台攻略
  */
 Route::rule('/strate','index/Gonglue/index');//攻略首页
@@ -43,13 +54,31 @@ Route::rule('/scshejishi','shopcom/Shejishi/index');//设计师
 Route::rule('/shejianjie','shopcom/Shejishi/xiangqing');//设计师
 Route::rule('/scdianping','shopcom/Dianping/index');//点评
 Route::rule('/schuodong','shopcom/Huodong/index');//活动
+Route::rule('/huodong','shopcom/Huodong/xiangqing');//活动详情
 Route::rule('/sczixun','shopcom/Zixun/index');//资讯
+Route::rule('/zixun','shopcom/Zixun/xiangqing');//资讯
+Route::rule('/zixun/ping','shopcom/Zixun/ping');//资讯
+Route::rule('/zixun/hui','shopcom/Zixun/hui');//资讯
+Route::rule('/zixun/dianzan','shopcom/Zixun/dianzan');//咨询点赞
 Route::rule('/sclxwm','shopcom/Lianxiwm/index');//联系我们
 // 提交预约信息
 Route::rule('/shopcomyy/Anli/addyuyuexx','shopcom/Anli/addyuyuexx');
 /**
  * 后台
  */
+// 攻略
+Route::rule('/admin/gonglue/index','admin/Gonglue/index');//攻略列表
+Route::rule('/admin/gonglue/add','admin/Gonglue/add');
+Route::rule('/admin/gonglue/edit','admin/Gonglue/edit');
+Route::rule('/admin/gonglue/del','admin/Gonglue/del');
+Route::rule('/admin/Gonglue/zileibie','admin/Gonglue/zileibie');//攻略子类别
+//攻略内容-副标
+Route::rule('/admin/gled/index','admin/gled/index');//攻略内容-副标详情
+Route::rule('/admin/gled/add','admin/gled/add');//添加
+Route::rule('/admin/gled/edit','admin/gled/edit');//修改
+Route::rule('/admin/gled/delete','admin/gled/delete');//删除
+
+// 登陆
 Route::rule('/admin/login/index','admin/login/index');//后台登陆页面
 Route::rule('/admin/login/dologin','admin/login/dologin');//后台执行登陆
 Route::rule('/admin/login/dosign','admin/login/dosign');//后台执行退出
@@ -101,6 +130,17 @@ Route::rule('/admin/gongsi/resevatype','admin/gongsi/resevatype');//预约状态
 Route::rule('/admin/gongsi/resevatypeadd','admin/gongsi/resevatypeadd');// 添加
 Route::rule('/admin/gongsi/resevatypeedit','admin/gongsi/resevatypeedit');// 修改
 Route::rule('/admin/gongsi/resevatypedel','admin/gongsi/resevatypedel');// 删除
+//攻略类型-主
+Route::rule('/admin/gongluetype/zhulei','admin/gongluetype/zhulei');//攻略主类型
+Route::rule('/admin/gongluetype/zhuleiadd','admin/gongluetype/zhuleiadd');// 添加
+Route::rule('/admin/gongluetype/zhuleiedit','admin/gongluetype/zhuleiedit');// 修改
+Route::rule('/admin/gongluetype/zhuleidel','admin/gongluetype/zhuleidel');// 删除
+
+//攻略类型-副
+Route::rule('/admin/gongluetype/fuleibie','admin/gongluetype/fuleibie');//攻略子类型
+Route::rule('/admin/gongluetype/fuleibiedd','admin/gongluetype/fuleibieadd');// 添加
+Route::rule('/admin/gongluetype/fuleibieedit','admin/gongluetype/fuleibieedit');// 修改
+Route::rule('/admin/gongluetype/fuleibiedel','admin/gongluetype/fuleibiedel');// 删除
 //公司
 Route::rule('/admin/shop/index','admin/shop/index');//公司详情
 Route::rule('/admin/shop/add','admin/shop/add');//添加

@@ -1,0 +1,316 @@
+{extend name="layoutextend"}
+{block name="nav"}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title></title>
+	<style type="text/css">
+
+.table-bordered td div{
+  width:200px;
+    word-wrap: break-word;
+    overflow: hidden;
+   text-overflow:ellipsis;
+   white-space: nowrap;
+
+  
+}
+</style>
+<script type="text/javascript">
+  //缩略图添加
+    function imgPreviews(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("previews");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    //缩略图修改
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    </script>
+</head>
+<body>
+<div style="margin-left: 2%;margin-right: 2%;">
+		<h1 style="text-align: center;">攻略-类别</h1>
+<button class="btn" style="margin-top: -5%;" id="showModel">添加类别</button> 
+	<table class="table table-bordered" >
+
+		<thead>
+			<tr>
+				<!-- <th>id</th> -->
+				<th>编号</th>
+				<th>标题</th>
+				<th>副标题</th>
+				<th>logo</th>
+				<th>图片说明</th>
+				<th>内容</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="yuansuzhijia">
+			
+			{foreach name="res" item="vores"}
+				<tr>
+					<td><span class="id">{$vores.id}</span></td>
+					<td><div class="name">{$com.name}</div></td>
+					<td><div class="title">{$vores.title}</div></td>
+					<td><span class="logo" name="{$vores.logo}"  ><img src="__STATIC__/uploads/{$vores.logo}" style="width:50px;height: 50px" class="img"></span></td>
+					<td><div class="logosm">{$vores.logosm}</div></td>
+					<td><div class="text">{$vores.text}</div>
+					<td>
+						<span style=" cursor: pointer;" class="showModel2">修改</span> | 
+						<span style=" cursor: pointer;" class="delcom">删除</span> |
+						
+					</td>
+				</tr>
+			{/foreach}
+		</tbody>
+	</table>
+	<div>{$page}</div>
+</div>
+<!-- 模态框 -->
+<div>
+	 <!-- 模态框添加 -->
+	<div id="modal" class="modal">  
+	    <div class="modal-content">  
+	        <header class="modal-header">  
+	            <h4>副标题添加</h4>  
+	            <span class="close">×</span>  
+	        </header>  
+	        <div class="modal-body">  
+	             <form id="formsubadd" class="form-inline" method="post" enctype="multipart/form-data" action="{:url('admin/gled/add')}" >
+				<table  style="border-collapse:separate; border-spacing:10px; width: 100%;" >
+				<input type="text" style="display:none;" name="strid"  value="{$com.id}" >
+				<tr>
+						<td>标题</td>
+						<td>
+							<input type="text" disabled="disabled" value="{$com.name}">
+						</td>
+					</tr>
+					<tr>
+						<td>副标题</td>
+						<td>
+							<input type="text"   name="title" placeholder="请输入名字">
+						</td>
+					</tr>
+					<tr>
+						<td class='wid'>轮播图logo</td>
+						<td>
+							
+							<img id="previews" width="100px" />
+                              <br />
+							<input type="file" name="logo" onchange="imgPreviews(this)" />
+							
+							
+						</td>
+					</tr>、
+					<tr>
+						<td>图片说明</td>
+						<td>
+							<input type="text"  name="logosm" placeholder="请输入说明">
+						</td>
+					</tr>
+					<tr>
+						<td>内容</td>
+						<td>
+                <textarea  name="text" style="height: 100px;width:500px" placeholder="请填写内容"></textarea>
+             
+            </td>
+					</tr>
+				</table>
+			</form>
+	        </div>  
+	        <footer class="modal-footer">  
+	            <button id="cancel">取消</button>  
+	            <button id="sure">确定</button>  
+	        </footer>  
+	    </div>  
+	</div> 
+	<!-- 模态框修改 -->
+	<div id="modal2" class="modal">  
+	    <div class="modal-content">  
+	        <header class="modal-header">  
+	            <h4>副标题修改</h4>  
+	            <span class="close2">×</span>  
+	        </header>  
+	        <div class="modal-body">  
+	             <form id="formsubedit" class="form-inline" method="post" enctype="multipart/form-data" action="{:url('admin/gled/edit')}" >
+				<table  style="border-collapse:separate; border-spacing:10px; width: 100%;" >
+					<input type="text" style="display:none;" name="strid"  value="{$com.id}" >
+					<input type="text" style="display:none;" name="id" id="id" value="1">
+					<tr>
+						<td>标题</td>
+						<td>
+							<input type="text" disabled="disabled" value="{$com.name}">
+						</td>
+					</tr>
+					<tr>
+						<td>副标题</td>
+						<td>
+							<input type="text"  id="title" name="title" placeholder="请输入名字">
+						</td>
+					</tr>
+					<tr>
+						<td class='wid'>logo</td>
+						<td>
+							<div id="logo"><img src="" id="preview" style="width:100px;height: 100px" ></div>
+							<input type="file" name="shop_logo" onchange="imgPreview(this)" />
+							
+						</td>
+					</tr>
+					<tr>
+						<td>图片说明</td>
+						<td>
+							<input type="text" id="logosm" name="logosm" placeholder="请输入说明">
+						</td>
+					</tr>
+					<tr>
+						<td>内容</td>
+						<td>
+              <textarea id="text" name="text" style="height: 100px;width:500px" placeholder="请填写内容"></textarea>
+             
+                        </td>
+					</tr>
+				</table>
+			</form>
+	        </div>  
+	        <footer class="modal-footer">  
+	            <button id="cancel2">取消</button>  
+	            <button id="sure2">确定</button>  
+	        </footer>  
+	    </div>  
+	</div>  
+</div>
+
+</body>
+<!-- 模态框js -->
+<script>  
+// 添加
+    var btn = document.getElementById('showModel');  
+    var close = document.getElementsByClassName('close')[0];  
+    var cancel = document.getElementById('cancel');  
+    var sure = document.getElementById('sure');  
+    var modal = document.getElementById('modal');  
+    btn.addEventListener('click', function(){
+        modal.style.display = "block";  
+    });  
+    close.addEventListener('click', function(){  
+        modal.style.display = "none";  
+    });  
+    cancel.addEventListener('click', function(){  
+        modal.style.display = "none";  
+    });  
+    sure.addEventListener('click', function(){  
+    	// 获取信息
+    		$("#formsubadd").submit();
+    	
+        
+    });
+
+    // 修改   
+    var close2 = document.getElementsByClassName('close2')[0];  
+    var cancel2 = document.getElementById('cancel2');  
+    var sure2 = document.getElementById('sure2');  
+    var modal2 = document.getElementById('modal2'); 
+    //模态框展示 
+    $(".showModel2").click(function(){
+    	var id=$(this).parent().parent().find(".id").html();
+    	var title=$(this).parent().parent().find(".title").html();
+    	var src = $(this).parent().parent().find(".logo img").attr("src");
+    	var logosm=$(this).parent().parent().find(".logosm").html();
+    	var text=$(this).parent().parent().find(".text").html();
+    	//赋值
+    	$("#id").val(id);
+    	$("#title").val(title);
+    	$("#logo img").attr("src",src);
+    	$("#logosm").val(logosm);
+    	$("#text").val(text);
+    	// alert(comid);comname
+    	 modal2.style.display = "block";  
+    	});
+    close2.addEventListener('click', function(){  
+        modal2.style.display = "none";  
+    }); 
+    cancel2.addEventListener('click', function(){  
+        modal2.style.display = "none";  
+    });  
+    sure2.addEventListener('click', function(){
+    	// 获取信息
+    	$("#formsubedit").submit();
+    	
+        
+    });
+    // 执行删除
+    $(".delcom").click(function(){
+    	if(confirm("确定删除该类型吗？")){
+    		var comid = $(this).parent().parent().find(".id").html();
+    		
+    		// alert(comid);return false;
+    		$(this).parent().parent().remove();
+    		// console.log(aa);return false;
+    		$.ajax({
+	            type:"post",
+	            dataType:'json',
+	            async:false,
+	            url:'{:url("admin/gled/delete")}',
+	            data:{"id":comid},
+	            success:function(dd){
+
+	                // console.log(dd);
+	                if (dd.code == 200) {
+	                	//jq 删除元素
+
+	                }else{
+	                	alert(msg);
+	                }
+	                 
+	            }
+	        })
+    	}
+    });
+</script> 
+</html>
+{/block}

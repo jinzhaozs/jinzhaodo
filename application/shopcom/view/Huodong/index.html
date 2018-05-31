@@ -56,7 +56,7 @@
 		<ul>
 			<li><p class="fang"><img src="__STATIC__/shopcom/huodong/image/fang.jpg"><p></li>
 			<li><span>当前位置：</span></li>
-	        <li><a href="">&nbsp;&nbsp;   {$shopcom[0]['name']}&nbsp;&nbsp;></a></li>
+	        <li><a href="{:url('/shopcom',['comid'=>$shopcom[0]['id']])}">&nbsp;&nbsp;   {$shopcom[0]['name']}&nbsp;&nbsp;></a></li>
 			<li><span>&nbsp;&nbsp;优惠活动</span></li>
 		</ul>
 	</div>
@@ -69,7 +69,7 @@
 			<div class="ban-left">
 				<!-- <p class="baoming">已经有<span>10</span>人报名</p> -->
 				<p class="fire"><img src="__STATIC__/shopcom/huodong/image/fire.png"></p>
-				<p class="luohui"><img src="__STATIC__/uploads/{$voact.actlogo}"></p>
+				<p class="luohui"><img src="__STATIC__/uploads/{$voact.actlogo}" width="100%" height="280px"></p>
 			</div>
 			<div class="ban-right">
 				<div class="renxing">
@@ -82,7 +82,7 @@
 				<div class="join">
 					<ul>
 						<a href=""><li><span><img src="__STATIC__/shopcom/huodong/image/youjian.jpg"></span>参加优惠活动</li></a>
-						<a href=""><li><span><img src="__STATIC__/shopcom/huodong/image/youjiana.jpg"></span>了解活动详情</li></a>
+						<a href="{:url('/huodong',['comid'=>$shopcom[0]['id'],'hdid'=>$voact['id']])}"><li><span><img src="__STATIC__/shopcom/huodong/image/youjiana.jpg"></span>了解活动详情</li></a>
 					</ul>
 				</div>		
 			</div>

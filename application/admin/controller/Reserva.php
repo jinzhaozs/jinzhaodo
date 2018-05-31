@@ -46,7 +46,6 @@ class Reserva extends  \app\admin\controller\Base
         // 判断级别
         switch ($type) {
             case '1':
-                
                 $branch = uri('branch',array());//部门信息
                 $res = db('reserva')->order("zhidingbumen")->where($where)->paginate(10,false,['query'=>$urlcanshu]);//预约信息
                 // $res = uri('reserva',array());//预约信息

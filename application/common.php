@@ -160,3 +160,9 @@
                 break;
         }
     }
+    // 攻略主类别
+    function gongluezhuleibie($code){
+        $where['id'] = $code;
+        $res = db('str_zhulei')->where($where)->find();
+        return $res['name'];
+    }

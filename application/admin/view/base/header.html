@@ -251,12 +251,14 @@
       <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 效果图</a></h3>
       <ul>
         <li> <a href="{:url('admin/ectatlas/index')}">图册列表</a></li>
-        <li><a href="{:url('admin/gongsi/layout')}">图册——户型</a></li>
-        <li><a href="{:url('admin/gongsi/zhuancfg')}">图册——风格</a></li>
-         <li><a href="{:url('admin/tuce/remen')}">图册——热门标签</a></li>
-        <li><a href="{:url('admin/tuce/mianji')}">图册——面积</a></li>
-       <li><a href="{:url('admin/ectkj/index')}">图片——空间</a></li>
-        <li><a href="{:url('admin/tuce/jubu')}">图片——局部</a></li>
+
+      </ul>
+      {/in}
+      <!-- 判断权限 -->
+        {in name="$sesionadusertype" value="1"}
+      <h3 class="am-icon-cart-plus"><em></em> <a href="#"> 攻略</a></h3>
+      <ul>
+        <li> <a href="{:url('admin/gonglue/index')}">攻略列表</a></li>
 
       </ul>
       {/in}
@@ -303,6 +305,7 @@
         <li><a href="{:url('admin/gongsi/price')}">公司——服务价位</a></li>
         <li><a href="{:url('admin/gongsi/layout')}">案例——户型</a></li>
         <li><a href="{:url('admin/gongsi/resevatype')}">预约——状态</a></li>
+        <li><a href="{:url('admin/gongluetype/zhulei')}">攻略——类别</a></li>
         <li><br></li>
         <li><br></li>
         <li><br></li>

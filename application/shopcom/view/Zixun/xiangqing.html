@@ -1,0 +1,661 @@
+{extend name="layoutextend"}
+
+{block name="info"}
+<div class="company_header ">
+    <div class="wrapper ">
+        <div class="header-logo ">
+            <a href=" " title="北京今朝装饰设计有限公司 " class="logo ">
+                <img src="__STATIC__/uploads/{$shopcom[0]['logo']}" alt="北京今朝装饰设计有限公司 ">
+            </a>
+            <div class="company_explain ">
+                <h1>
+                    {$shopcom[0]['name']}
+                </h1>
+                <p class="addr ">地址：{$shopcom[0]['dizhi']} <a href=" " class="map "></a></p>
+                <p class="tel ">
+                    <span title="还在抄写地址电话吗？点一下，免费短信发给您 " class="GetMobile ">免费发送至手机</span>
+
+                    <a class="qq " target="_blank " href=" " title="点击这里给北京今朝装饰设计有限公司发消息 ">QQ在线咨询</a>
+                </p>
+            </div>
+        </div>
+        <div class="share ">
+<div class="article-share bdsharebuttonbox bdshare-button-style0-32 " data-bd-bind="1523428678629 ">
+    <span>分享到：</span><a class="bds_qzone " data-cmd="qzone " title="分享到QQ空间 "></a><a class="bds_tsina " data-cmd="tsina " title="分享到新浪微博 "></a><a class="bds_weixin " data-cmd="weixin " title="分享到微信 "></a><a class="bds_tqq " data-cmd="tqq " title="分享到腾讯微博 "></a><a class="bds_sqq " data-cmd="sqq " title="分享到QQ好友 "></a><a class="bds_more " data-cmd="more ">更多</a> <span></span>
+</div>
+        </div>
+    </div>
+</div>
+
+<div class="company_naver ">
+    <div class="wrapper ">
+        <a target="_blank " href="http://www.bzw315.com/zhaobiao/ " title="免费设计与报价 " class="free "><i></i>免费设计与报价</a>
+    </div>
+    <div class="company_naver_nav">
+        <div class="wrapper">
+            <a href="{:url('/shopcom',['comid'=>$shopcom[0]['id']])}" title="首页 " class="" >首页</a>
+            <a href="{:url('/scjianjie',['comid'=>$shopcom[0]['id']])}"  title="装修公司简介 " class=""><span style="color:#fff;">公司简介</span></a>
+            <a href="{:url('/schuodong',['comid'=>$shopcom[0]['id']])}" title="装修优惠活动 " class="">优惠活动</a>
+            <a href="{:url('/scanli',['comid'=>$shopcom[0]['id']])}" title="装修案例 " class="">装修案例</a>
+            <a href="{:url('/scgongdi',['comid'=>$shopcom[0]['id']])}" title="施工工地 " class="">施工工地</a>
+            <a href="{:url('/scshejishi',['comid'=>$shopcom[0]['id']])} " title="装修设计团队 " class="">设计团队</a>
+            <a href="{:url('/scdianping',['comid'=>$shopcom[0]['id']])} " title="装修服务点评 " class="">服务点评</a>
+            <a href="{:url('/sczixun',['comid'=>$shopcom[0]['id']])} " title="装修公司资讯 " class="active">公司资讯</a>
+            <a href="{:url('/sclxwm',['comid'=>$shopcom[0]['id']])}" title="联系我们 " class=" ">联系我们</a>
+        </div>
+    </div>
+</div>
+
+<div class="main ">
+    <div class="wrapper ">
+        <!-- 内容区域 -->
+        <div class="banner_text " >
+	<link rel="stylesheet" type="text/css" href="__STATIC__/shopcom/zixun/bajian.css">
+
+	<div class="wei-zhi">
+		<ul>
+			<li><p class="fang"><img src="__STATIC__/shopcom/zixun/image/fang.jpg"><p></li>
+			<li><span>当前位置：</span></li>
+	                         <li><a href="">&nbsp;&nbsp;  {$shopcom[0]['name']}&nbsp;&nbsp;</a></li>
+	                          <li><a href="">&nbsp;&nbsp;  公司资讯&nbsp;&nbsp;</a></li>
+			<li><span>>&nbsp;&nbsp;{$art.aname}&nbsp;&nbsp;</span></li>
+			
+		</ul>
+	</div>
+	<div  id="all">
+		<div class="bajian-left">
+			<div id="sb">
+				<div class="baleft-top">
+					<h1>{$art.aname}</h1>
+					<p><span>{$art.atime}</span>&nbsp;&nbsp;<span>来源：<a href="">保障网</a></span>&nbsp;&nbsp;
+					<span>编辑：阔达尚居装饰</span>&nbsp;&nbsp;<span>评论<em>&nbsp;122334454&nbsp;</em>条</span>
+					</p>
+				</div>
+				<div class="baleft-main">
+					{$art.content}
+					<p class="left-pian"><span>上一篇&nbsp;<a href="">{if condition="$front.aname"}<a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$after['id']])}">{$front.aname}</a>{else /}没有了{/if}</a></span>
+					<span>下一篇&nbsp; {if condition="$after.aname"}<a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$after['id']])}">{$after.aname}</a>{else /}没有了{/if}</span>
+					</p>
+					<div class="left-shengming">
+						<p>声明：本文发自装修保障网，如本站文章和转稿涉及版权等问题，请作者在及时联系本站，我们会  尽快处理。
+						</p>
+						<p>标题： 买房后不要着急装修，先做这8件事          地址：&nbsp;&nbsp;http://bj.bzw315.com/shop/8240/newsdetail/448547.html
+						</p>
+						
+					</div>
+					<div class="share">
+						<span>分享到：</span>
+						<a href=""><img src="__STATIC__/shopcom/zixun/image/kongjian.jpg"></a>
+						<a href=""><img src="__STATIC__/shopcom/zixun/image/weibo.jpg"></a>
+						<a href=""><img src="__STATIC__/shopcom/zixun/image/weixin.jpg"></a>
+						<a href=""><img src="__STATIC__/shopcom/zixun/image/yy.jpg"></a>
+						<a href=""><img src="__STATIC__/shopcom/zixun/image/qq.jpg"></a>
+						<span  id="more">更多
+							<div class="share-more">
+								<p>分享到</p>
+								
+								<ul class="ulone">
+								            <li><span><img src="__STATIC__/shopcom/zixun/image/yijian.jpg"></span>一键分享</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/xinlang.jpg"></span>新浪微博</li>
+									<li><span><img src="__STATIC__/shopcom/zixun/image/weixin1.jpg"></span>微信</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/tengxun.jpg"></span>腾讯微博</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/kaixin.jpg"></span>开心网</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/tieba.jpg"></span>百度贴吧</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/baidu.jpg"></span>百度新首页</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/hexun.jpg"></span>和讯微博</li>
+								</ul>
+								<ul class="ulone">
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/qqkongjian.jpg"></span>QQ空间</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/shoucang.jpg"></span>百度云收藏</li>
+									<li><span><img src="__STATIC__/shopcom/zixun/image/renren.jpg"></span>人人网</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/xiangce.jpg"></span>百度相册</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/pengyou.jpg"></span>腾讯朋友</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/dou.jpg"></span>豆瓣网</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/qqhaoyou.jpg"></span>QQ好友</li>
+								             <li><span><img src="__STATIC__/shopcom/zixun/image/zhongxin.jpg"></span>百度中心</li>
+								</ul>
+	   							<p class="more-more"><span><img src="__STATIC__/shopcom/zixun/image/jia.jpg"></span>更多...</p>
+				             		</div>
+
+						</span>
+						<span class="shoucang"><em><img src="__STATIC__/shopcom/zixun/image/stars.jpg"></em>&nbsp;收藏</span><span class="dianzan"><em><img src="__STATIC__/shopcom/zixun/image/zan.jpg"></em>&nbsp;点赞</span>
+				             </div>
+				             <div class="guanjian">关键词</div>
+				             <div class="tu-show">
+						<h3>相关推荐</h3>
+						<ul>
+							{foreach name="tui" item="tu"}
+							<li>
+								<a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$tu['id']])}"><img src="__STATIC__/uploads/{$tu.pic}"></a>
+								<p class="shuoming">{$tu.aname}</p>
+							</li>
+							{/foreach}
+							
+						</ul>
+						<div class="dongtai">
+							<!-- <ul>
+								<li><a href="">相关栏目： </a></li>
+								<li><a href="">样板美图 </a></li>
+								<li><a href="">行业动态</a></li>
+								<li><a href="">装修技巧</a></li>
+								<li><a href="">家居风水</a></li>
+								<li><a href="">家居风水</a></li>
+								<li><a href="">家居风水</a></li>
+							</ul> -->
+						</div>
+				            </div>
+				</div>
+			</div>
+			<!-- 评论回复 -->
+			<div class="pinglun">
+				<div class="pinglun-top">
+					<h3>文章评论</h3>
+					<div class="tiaoshu">
+						<span><img src="__STATIC__/shopcom/zixun/image/pinglun.jpg"></span><em>122343</em>条
+					</div>
+				</div>
+				<div class="xiezhu">
+					<div class="touxiang"><img src="__STATIC__/shopcom/zixun/image/xiezhu.jpg"></div>
+					<div class="xie-xia">写下你的评论...</div>
+					<input type="hidden" name="" id="name" value="{$name}">
+					<input type="hidden" name="" id="aid" value="{$zxid}">  
+					<div class="fa-bu">发布</div>            
+				</div>
+				<div class="xiezhu-one">
+				  	<div class="touxiang"><img src="__STATIC__/shopcom/zixun/image/xiezhu.jpg"></div>
+					 <textarea class="xie-pinglun"  placeholder="写下你的评论..." ></textarea>
+					<div class="fa-buone"><span>发布</span></div>            
+				</div>
+				<script type="text/javascript">
+					 $(document).on("click",".fa-buone",function(){
+					 		var arcount=$(".xie-pinglun").val();
+					 		var arname=$("#name").val();
+					 		var aid=$("#aid").val();
+					 		var data = {'arname':arname,'arcount':arcount,'aid':aid};
+
+		               $.post('{:url("shopcom/zixun/ping")}', data ,function(data){
+		               
+		               		if(data ==1)
+		                	{
+
+		                		parent.layer.msg('发布成功', { icon: 1, time: 2000 }, function(){
+					            window.location.reload();
+				              });
+		                	}
+		                	else
+		                	{
+		                		parent.layer.msg('发布失败', {icon: 0, time: 2000 });
+		                	}
+		               });
+					 });
+				</script>
+				{foreach name="ping" item="pl"}
+				<div class="qiangshafa">
+					<div class="shangbu">
+						<div class="ping-tou"><img src="__STATIC__/shopcom/zixun/image/bb.jpg"></div>
+						<div class="zuo-left">
+							<p class="name">{$pl.arname}</p>
+							<p class="main">{$pl.arcount}</p>
+							
+							<div class="day">
+								<p class="riqi">{$pl.time|timezhuanghuaduan=###}</p>
+								<p class="cao">
+									<span><em class="dzshu">{$pl.dzshu}</em>&nbsp;<img src="__STATIC__/shopcom/zixun/image/shou.jpg" class="zan" name="{$pl.id}" style="cursor:pointer"></span>
+									<span class="pingping"><img src="__STATIC__/shopcom/zixun/image/zanma.jpg" style="cursor:pointer"></span>
+								</p>
+								
+							</div>
+						</div>
+						
+					</div>
+					<div class="kanfa">
+						<textarea   placeholder="回复一下你的看法" id="t" ></textarea>
+						<div class="huifu" name="{$pl.id}">
+							<span style="cursor:pointer" >回复</span>
+						</div>							
+					</div>
+					<div class="iop">
+						<!-- jx添加 -->
+					</div>
+					 <input type="hidden" id="poiu" value="1">
+					 <div>
+					 	<!--  <span class='aaaa'>{$pl.id}</span>-->
+
+					 	<!-- <script type="text/javascript">
+  
+					 		var tid={$pl.id};
+					 		var data={'tid':tid};
+					 		$.post('{:url("shopcom/zixun/hui")}', data ,function(data){
+							//alert(data);
+				              });
+					
+					 		
+					 </script>   -->
+					 </div>
+
+				</div>
+				{/foreach}
+				<!-- 点赞 -->
+				<script type="text/javascript">
+					$(document).on("click",".zan",function(){
+						var dzshu=$(this).parent().parent().find(".dzshu").html();
+						var id=$(this).attr("name");
+						
+						var data={'dzshu':dzshu,'id':id};
+						$.post('{:url("shopcom/zixun/dianzan")}', data ,function(data){
+							//alert(data);
+						  window.location.reload();
+				              });
+					});
+				</script>
+                <!-- 回复 -->
+				<script type="text/javascript">
+					$(document).on("click",".huifu",function(){
+					 		var arcount=$(".kanfa .huifus").val();
+					 	    var tid=$(this).attr("name");
+					 		var arname=$("#name").val();
+					 		var aid=$("#aid").val();
+					 		var data = {'arname':arname,'arcount':arcount,'aid':aid,'tid':tid};
+
+		                $.post('{:url("shopcom/zixun/ping")}', data ,function(data){
+		               
+		                	if(data ==1)
+		                	{
+
+		                		parent.layer.msg('回复成功', { icon: 1, time: 2000 }, function(){
+					            window.location.reload();
+				              });
+		                	}
+		                	else
+		                	{
+		                		parent.layer.msg('回复失败', {icon: 0, time: 2000 });
+		                	}
+		                });
+					 });
+				</script>
+				
+				
+					<div class="kanfa">
+						<textarea   placeholder="回复一下你的看法" id="t"></textarea>
+						<div class="huifu">
+							<span style="cursor:pointer">回复</span>
+						</div>							
+					</div>
+				</div>
+			</div>
+			<div class="share-more" id="share-moreone">
+				<p><em>分享到</em> <span class="cha"><img src="__STATIC__/shopcom/zixun/image/chacha.jpg"></span></p>
+				<div class="wunai">
+					<ul class="ulone">
+						<li><span><img src="__STATIC__/shopcom/zixun/image/yijian.jpg"></span>一键分享</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/xinlang.jpg"></span>新浪微博</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/weixin1.jpg"></span>微信</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/tengxun.jpg"></span>腾讯微博</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/kaixin.jpg"></span>开心网</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/tieba.jpg"></span>百度贴吧</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/baidu.jpg"></span>百度新首页</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/hexun.jpg"></span>和讯微博</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/meili.jpg"></span>美丽说</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/diandian.jpg"></span>点点网</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/dui.jpg"></span>堆糖</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/feixin.jpg"></span>飞信</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/maiku.jpg"></span>麦库记事</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/renmin.jpg"></span>人民微博</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/youjian.jpg"></span>邮件分享</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/yao.jpg"></span>摇篮空间</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/tianya.jpg"></span>天涯社区</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/face.jpg"></span>Facebook</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/link.jpg"></span>linkedin</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/yinxiang.jpg"></span>印象笔记</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/dayin.jpg"></span>打印</li>
+					</ul>
+					<ul class="ulone">
+						<li><span><img src="__STATIC__/shopcom/zixun/image/qqkongjian.jpg"></span>QQ空间</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/shoucang.jpg"></span>百度云收藏</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/renren.jpg"></span>人人网</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/xiangce.jpg"></span>百度相册</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/pengyou.jpg"></span>腾讯朋友</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/dou.jpg"></span>豆瓣网</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/qqhaoyou.jpg"></span>QQ好友</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/zhongxin.jpg"></span>百度中心</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/mogu.jpg"></span>蘑菇街</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/huaban.jpg"></span>花瓣</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/hexun1.jpg"></span>和讯</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/youdao.jpg"></span>有道云笔记</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/biji.jpg"></span>轻笔记</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/xinhua.jpg"></span>新华微博</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/souhu.jpg"></span>我的搜狐</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/bilin.jpg"></span>若邻网</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/guba.jpg"></span>股吧</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/twitter.jpg"></span>Twitter</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/re.jpg"></span>网易热</li>
+						<li><span><img src="__STATIC__/shopcom/zixun/image/clone.jpg"></span>复制</li>
+					</ul>
+				</div>
+				<p class="fengxiang"><em>百度分享<em></p>
+			</div>
+			<div class="chongfu">
+				<span class="x"><img src="__STATIC__/shopcom/zixun/image/dacha.jpg"></span>请勿重复点赞
+			</div>
+			<div class="xiandeng">
+				<span class="x"><img src="__STATIC__/shopcom/zixun/image/dacha.jpg"></span>请先登录再收藏
+			</div>
+			<div class="ceng-two">
+				<div class="deng-ji">
+					<div class="nainai"><p><span id="miao">5</span>秒后将跳转到登录页面</p><em class="quxiaox">x</em></div>
+					<div class="qu-deng">
+						<ul>
+							<li>立即登录</li>
+							<li class="qu-xiao">取消</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 右侧 -->
+		<div class="bajian-right">
+			<div class="baright-top">
+				<div class="biaodan">
+					<div class="baozhang">
+						<h3>您装修我保障</h3>
+						<p>申请装修<i>立省30%</i></p>
+						<div class="luo-tian">
+							<input class="texts"  placeholder="您的称呼" id="ninde"><br/>
+							<input class="texts"  placeholder="手机号码"  id="inpu" ><br/>
+							<input class="texts"  placeholder="动态验证码"  id="yanma" ><span id="yanzhengma">获取验证码</span>
+							<input type="hidden" id="yincanghttpinfo" value="{$httpinfo}">
+                      <!-- 公司id -->
+                      <input type="hidden" id="lyqd" value="文章">
+						</div>
+						<div class="fengshui">
+							<em>已有<a>74</a>位业主享受服务</em>
+							<i><input type="checkbox" name="like">风水服务</i>
+						</div>
+						<button id="like">立即免费申请</button>
+						<script type="text/javascript">
+  
+    // 预约信息提交
+        $(document).on("click","#like",function(){
+            //隐藏信息
+            var yincanghttpinfo = $("#yincanghttpinfo").val();//http头部信息
+            var yincangcomid = $("#yincangcomid").val();//公司id
+            var lyqd=$("#lyqd").val();
+            // 基本信息
+            var yuyuename = $("#ninde").val();//名称
+
+            var yuyuetel = $("#inpu").val();//手机号
+            // // 判断名称
+            if (!yuyuename) {
+                $("#ninde").focus();
+                $("#ninde").css("background-color","#FFFFCD");
+                return false;
+            }
+            //判断手机号格式
+            if (yuyuetel == "") { 
+                 $("#inpu").focus();
+                $("#inpu").css("background-color","#FFFFCD");
+                return false;
+            } else{
+                if (!yuyuetel.match(/^(13[0-9]|14[0-9]|15[0-9]|18[0-9]|17[0-9])\d{8}$/)) { 
+                    $("#inpu").focus();
+                $("#inpu").css("background-color","#FFFFCD"); 
+                    return false; 
+                } 
+            }
+            // 数据提交
+            $.ajax({
+                type:"post",
+                dataType:'json',
+                async:false,
+                url:'{:url("shopcomyy/Anli/addyuyuexx")}',
+                data:{"entran_ym":yincanghttpinfo,"comid":yincangcomid,"citycode":123,"areacode":123,"name":yuyuename,"tel":yuyuetel,"lyqd":lyqd},
+                success:function(dd){
+                    if (dd.code == 200) {
+                        $(".close_cha").click();
+                        $(".ceng-one").css("display", "block");
+                        $(".ceng").css("display", "none");
+                    }
+                    // alert(dd);
+                    // console.log(dd);
+                }
+            })
+        });
+</script>
+						<div class="biao-list">
+							<ul>
+								<li><span><img src="__STATIC__/shopcom/zixun/image/zuanshi.jpg"></span>免费报价</li>
+								<li><span><img src="__STATIC__/shopcom/zixun/image/bi.jpg"></span>免费报价</li>
+								<li><span><img src="__STATIC__/shopcom/zixun/image/xianafang.jpg"></span>免费报价</li>
+							</ul>
+							<ul>
+								<li><span><img src="__STATIC__/shopcom/zixun/image/shit.jpg"></span>免费报价</li>
+								<li><span><img src="__STATIC__/shopcom/zixun/image/dun.jpg"></span>免费报价</li>
+								<li><span><img src="__STATIC__/shopcom/zixun/image/quan.jpg"></span>免费报价</li>
+							</ul>
+						</div>
+						
+					</div>
+					
+
+				</div>
+			</div>
+			<div class="zyl_youxia" style="display: none;">
+				<div class="baright-middle" >
+					<div class="box">
+						<div class="nimabi">
+							<p class="remen">
+								热门资讯
+							</p>
+							<ul>
+								<li class="current">每日</li>
+								<li>每周</li>
+								<li>每月</li>
+							</ul>
+						</div>
+							
+						
+						<b class="show">
+							{foreach name="jin" item="art"} 	
+								<p class="erwei"><img src="__STATIC__/uploads/{$art.pic}"></p>
+								
+								<div class="sanp">
+									<a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$art['id']])}"><p class="ap">{$art.aname}</p></a>
+									
+								</div>
+								{/foreach}
+						</b>
+							
+						<b>		{foreach name="zhou" item="zh"} 
+							
+								<p class="erwei"><img src="__STATIC__/uploads/{$zh.pic}"></p>
+								<div class="sanp">
+									<a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$zh['id']])}"><p class="ap">{$zh.aname}</p></a>
+
+								</div>
+								
+								{/foreach}
+								
+						</b>
+						<b>	
+						{foreach name="yue" item="yue"} 	
+							<div class="caoninai">
+									<p class="erwei"><img src="__STATIC__/uploads/{$yue.pic}"></p>
+									<div class="sanp">
+										<a href="{:url('/zixun',['comid'=>$shopcom[0]['id'],'zxid'=>$yue['id']])}"><p class="ap">{$yue.aname}</p></a>
+										
+									</div>
+								</div>
+								{/foreach}
+								
+								
+						</b>
+
+						
+						
+					</div>
+						
+				</div>
+				<div class="baright-bottom">
+					<p class="baike">装修百科</p>
+					<ul>
+						<li><a href="">木门锁</a></li>
+						<li><a href="">推拉五金门</a></li>
+						<li><a href="">婴儿被子</a></li>
+						<li><a href="">不锈钢毛巾架</a></li>
+						<li><a href="">隐形门合页</a></li>
+						<li><a href="">柜子合页</a></li>
+						<li><a href="">海绵床垫</a></li>
+						<li><a href="">桑蚕丝被</a></li>
+						<li><a href="">速电热水龙头</a></li>
+					</ul>
+				</div>
+				
+			</div>
+
+
+		</div>
+
+	 </div>		
+
+	<script type="text/javascript" src="http://testuc.zhuyitai.com.cn/common/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+	// 点击更多
+	$(".more-more").click(function() {
+			$("#share-moreone").css("display", "block");
+
+		});
+	$("#more").click(function() {
+			$("#share-moreone").css("display", "block");
+
+		});
+	$(".cha").click(function() {
+			$("#share-moreone").css("display", "none");
+		});
+	// 点赞
+	$('.dianzan').on('click', function() {
+	        var $this = $(this);
+	        if(!$this.attr('clicked') || $this.attr('clicked') === "no") { // 未点击
+
+	            $this.attr('clicked', "yes"); // 重置属性
+	        } else if($this.attr('clicked') === "yes"){ // 被点击过
+	    	$(".chongfu").css("display", "block");
+	         	$(".x").click(function() {
+			$(".chongfu").css("display", "none");
+		});
+	        }
+	    });
+	// 收藏
+	$(".shoucang").click(function() {
+			$(".xiandeng").css("display", "block");
+
+		});
+	$(".x").click(function() {
+			$(".xiandeng").css("display", "none");
+		});
+
+	// 作者评论
+	$(".xie-xia").click(function() {
+			$(".xiezhu-one").css("display", "block");
+			$(".xiezhu").css("display", "none");
+            var name=$("#name").val();
+            if(!name)
+            {
+				$(".ceng-two").css("display", "block");
+            }
+			
+			setInterval(function(){ 
+				var num = $("#miao").html();
+				if (num == 0) {
+					num = 0;
+					// window.location.href = "https://yxsiyecao.top";
+					return;
+				}else{
+					num = num*1 -1;
+				}
+				$("#miao").html(num);
+				
+			 }, 1000);
+		});
+			
+	$(".quxiao").click(function() {
+			
+			$(".ceng-two").css("display", "none");
+		});
+	$(".qu-xiao").click(function() {
+			
+			$(".ceng-two").css("display", "none");
+		});
+
+	// 回复
+	$(".pingping").click(function(){
+		var bb = $("#poiu").val();
+
+		if (bb == 1) {
+			$(this).parent().parent().parent().parent().parent().find(".iop").html("");
+				{foreach name="ping" item="pl"}
+			var str = '<div class="kanfa" style="display:block;"><textarea placeholder="回复一下你的看法" id="t" class="huifus"></textarea><div class="huifu" name="{$pl.id}"><span style="cursor:pointer">回复</span></div></div>';
+			{/foreach}
+			// alert(str);
+			$(this).parent().parent().parent().parent().parent().find(".iop").append(str);
+			$("#poiu").val(2);
+		}else if(bb == 2){
+			$(this).parent().parent().parent().parent().parent().find(".iop").html("");
+			$("#poiu").val(1);
+		}else{
+			$(this).parent().parent().parent().parent().parent().find(".iop").html("");
+
+		}
+		
+	});
+
+
+	// 表单验证
+	$("#yanzhengma").click(function() {
+			$("#inpu ").css("background-color","#ffffcd");
+			$("#inpu ").css("border-color","#ff890b");
+		});
+	$("#like").click(function() {
+			$("#ninde ").css("background-color","#ffffcd");
+			$("#ninde ").css("border-color","#ff890b");
+		});
+
+
+	// tab
+	window.onload = function () {  
+            var boxArr = document.getElementsByClassName("box");  
+            for(var i=0;i<boxArr.length;i++){  
+                fn(boxArr[i]);  
+            }  
+            function fn(ele){  
+                var liArr = ele.getElementsByTagName("li");  
+                var spanArr = ele.getElementsByTagName("b");  
+                for(var i=0;i<liArr.length;i++){  
+                    liArr[i].index = i;  
+                    liArr[i].onmouseover = function () {  
+                        for(var j=0;j<liArr.length;j++){  
+                            liArr[j].className = "";  
+                            spanArr[j].className = "";  
+                        }  
+                        this.className = "current";  
+                        spanArr[this.index].className = "show";  
+                    }  
+                }  
+            }  
+        }  
+
+// 右侧滑动
+
+$(window).scroll(function(){
+	if ($(document).scrollTop() >$(".bajian-right").height()){
+		$(".zyl_youxia").css("display","none");
+		$(".biaodan").addClass("floatone");
+	}else{
+		$(".biaodan").removeClass("floatone");
+		$(".zyl_youxia").css("display","block");
+
+	}
+});
+
+	</script>
+				
+{/block}

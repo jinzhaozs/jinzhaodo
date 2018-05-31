@@ -11,6 +11,7 @@ namespace app\index\controller;
 
 use \think\Request;
 use think\Session;
+use \think\Db;
 class Gonglue extends \app\index\controller\Base
 {
     // 初始化
@@ -21,6 +22,7 @@ class Gonglue extends \app\index\controller\Base
         $this->assign("com_pricetou",db("com_price")->limit(6)->select());//价位
         $this->assign("com_leixingtou",db("com_qiyecsleixing")->limit(6)->select());//类型
         $this->assign("com_fenggetou",db("com_zhuancfg")->limit(6)->select());//风格
+        $this->assign("ect_kongjian",db("ect_kongjian")->limit(6)->select());//空间
     }
     //攻略首页
     public function index()
@@ -59,60 +61,6 @@ class Gonglue extends \app\index\controller\Base
         $this->assign("reslb",$reslb);
         return $this->fetch();
     }
-    // 攻略类别页
-    public function stratetype(){
-        /**
-         * 类别内容
-         * @var [type]
-         */
-        $user = db('str_zhulei');
-        $reslb = $user->field("id,name")
-        ->select();
-        //子类别内容
-        foreach ($reslb as $k => $v) {
-            $wherezl['zlid'] = $v['id'];
-            //类别副标信息
-            $reszlb = db('str_fuleibie')->where($wherezl)->select();
-            $reslb[$k]['zlbsel'] = $reszlb;
-            // dump($reszlb);
-        }
-        // 获取条件
-        $zlid = input('zlid');//主类别id
-        $flid = input('flid');//副类别id
-        // 主类id 是否存在
-        if ($zlid) {
-            // 主类副类id都存在
-            if ($flid) {
-                $wheregl['ztyid'] = $zlid;
-                $wheregl['ftyid'] = $flid;
-                $wherezlbname['id'] =$flid;
-                $zlbname = db("str_fuleibie")->where($wherezlbname)->find();
-                $zlbname = $zlbname['name'];
-            }else{
-                // 主类存在副类不存在
-               $wheregl['ztyid'] = $zlid;
-                $wherezlbname['zlid'] =$zlid;
-                $zlbname = db("str_fuleibie")->where($wherezlbname)->find();
-                $zlbname = $zlbname['name'];
-            }
-        }else{
-            echo "请求参数有误! 请联系管理员";
-        }
-        /**
-         * 攻略内容信息
-         */
-        // dump($wheregl);die;
-        $usergl = db("str_strate");
-        $resgl = $usergl->where($wheregl)->paginate(2); 
-        // 分页
-        $page=$resgl->render();
-        $this->assign("page",$page);
-        // dump($resgl);die;
-        $this->assign("reslb",$reslb);//类别
-        $this->assign("resgl",$resgl);//攻略
-        $this->assign("reslbname",$zlbname);//攻略
-        return $this->fetch();
-    }
     //攻略内容
     public function strateneirong(){
         // 攻略id
@@ -143,7 +91,14 @@ class Gonglue extends \app\index\controller\Base
 
         $resxgtjgl = $usergl->where($wherexgtj)->select();
         $this->assign("resxgtjgl",$resxgtjgl);//相关推荐内容
-        // dump($resxgtjgl);die;
+        /**
+         * 上一篇 下一篇内容
+         */
+        $sqlmax = Db::query("select max(id) as id,title from str_strate where id < $strid");
+        $sqlmin = Db::query("select min(id) as id,title from str_strate where id > $strid");
+        $this->assign("sqlmax",$sqlmax);//上一篇
+        $this->assign("sqlmin",$sqlmin);//下一篇
+        // dump($sqlmin);die;
         /**
          *  攻略详情内容
          * @var [type]

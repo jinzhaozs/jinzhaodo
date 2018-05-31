@@ -1,0 +1,267 @@
+{extend name="layoutextend"}
+
+{block name="link"}
+	<title>效果详情页</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/index/tucei/xiaoguo-detail.css">
+
+	<div  id="all" style="margin-top: 120px">
+		<div class="deall-top">
+			<div class="deall-nav">
+				<ul>
+					<li><a href="{:url('/tucei')}"> 装修效果图&nbsp;&nbsp;></a></li>
+					<li><a href="{:url('index/Tcei/index')}">  &nbsp;&nbsp; 家居图册&nbsp;&nbsp;></a></li>
+					 {neq name="$lname" value=""}
+			            <li class="bei" style="border: 1px solid green;color: green;">&nbsp;&nbsp; <a class="comtypedel yan">{$lname.lname}&nbsp;&nbsp;&nbsp;&nbsp;x</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+			             {/neq}
+
+			             {neq name="$fgname" value=""}
+			            <li class="bei" style="border: 1px solid green"><a class="comstyledel yan">&nbsp;&nbsp; {$fgname.zcfgname}&nbsp;&nbsp;&nbsp;&nbsp;x</a></li>
+			             {/neq}
+
+			              {neq name="$mjname" value=""}
+			            <li class="bei" style="border: 1px solid green"><a class="comsmjdel yan">&nbsp;&nbsp; {$mjname.emname}&nbsp;&nbsp;&nbsp;&nbsp;x</a></li>
+			             {/neq}
+
+			             {neq name="$lxname" value=""}
+			            <li class="bei" style="border: 1px solid green"><a class="comsgzdel yan">&nbsp;&nbsp; {$lxname.lxname}&nbsp;&nbsp;&nbsp;&nbsp;x</a></li>
+			             {/neq}
+			            
+				</ul>
+			</div>
+			 <form id="jiaojianquyu" action="{:url('/tcei')}" style="display: none;" method="get">
+    	户型：<input type="text" id="huxing" name="huxing" value="{$lname['lcode']}">
+    	风格：<input type="text" id="fengge" name="fengge" value="{$fgname['zcfgcode']}">
+    	面积：<input type="text" id="mianji" name="mianji" value="{$mjname['emcode']}">
+    	公装：<input type="text" id="gongzhuang" name="lxcode" value="{$lxname['lxcode']}">
+    	<input type="submit" value="提交" >
+    </form>
+			<div class="deall-middle">
+				<dl class="middle-dl">
+					<dt>户型</dt>
+					{foreach name="huxing" item="hx"}
+					<dd><a class="comtype"><input type="text" class="huxingid" style="display: none;" value="{$hx.lcode}">{$hx.lname}</a></dd>
+					{/foreach}
+					
+				</dl>
+				<div id="nav_lef">
+					<dl class="middle-middle">
+						<dt>风格</dt>
+						{foreach name="fengge" item="fg"}
+						<dd><a class="comstyle"><input type="text" class="fenggeid" style="display: none;" value="{$fg.zcfgcode}">{$fg.zcfgname}</a></dd>
+						{/foreach}
+
+					</dl>
+				
+				</div>
+				<dl class="middle-mian">
+					<dt>面积</dt>
+					{foreach name="mianji" item="mj"}
+					<dd><a class="comsmj"><input type="text" class="mianjiid" style="display: none;" value="{$mj.emcode}">{$mj.emname}</a></dd>
+					{/foreach}
+					
+				</dl>
+				<div id="nav_left">
+					<dl class="middle-middle">
+						<dt>公装</dt>
+						{foreach name="leixing" item="lx"}
+						<dd><a class="comsgz"><input type="text" class="gzid" style="display: none;" value="{$lx.lxcode}">{$lx.lxname}</a></dd>
+						{/foreach}
+
+					</dl>
+					<p class="img-xiajian"><span><img src="__STATIC__/index/tucei/images/down.jpg"></span></p>
+					<dl class="middle-yin">
+						{foreach name="leixings" item="lxs"}
+						<dd><a class="comsgz"><input type="text" class="gzid" style="display: none;" value="{$lxs.lxcode}">{$lxs.lxname}</a></dd>
+						{/foreach}
+
+					</dl>
+				</div>
+				<!-- <dl class="middle-about">
+					<dt class="nibi"><img src="__STATIC__/index/tucei/images/hun.jpg"></dt>
+					<dd><a href="">美式田园家具</a></dd>
+					<dd><a href="">美式床</a></dd>
+					<dd><a href="">洗手间壁画</a></dd>
+					<dd><a href="">门厅装饰画</a></dd>
+					<dd><a href="">美式厨房</a></dd>
+					<dd><a href="">美式家具</a></dd>
+					<dd><a href="">美式客厅</a></dd>
+					<dd><a href=""></a></dd>
+					<dd><a href=""></a></dd>
+					<dd><a href=""></a></dd>
+				</dl> -->
+				<dl class="middle-zui">
+					<dt class="xin-xin">最新</dt>
+					<dt class="h-h"><a href="">最热</a></dt>
+				</dl>
+				
+			</div>
+		</div>
+		<div class="xiaoguo">
+			
+				<div class="xiaoguo-xia">
+					<ul>
+						{foreach name="tucei" item="tc"}
+						<li>
+							<div class="li-div">
+								<a href="{:url('/tceixq',['tcid'=>$tc.id,'tcname'=>$tc.name])}"><img src="__STATIC__/uploads/{$tc.logo}"></a>
+								<p><span><i><img src="__STATIC__/index/tucei/images/star.jpg"></i>收藏</span><em>装修要多少钱?</em></p>
+							</div>
+							<div class="div-style">
+								<h3>{$tc.name}</h3>
+								<i class="shizhang"><b>{$tc.zhang}&nbsp;</b>张</i>
+							</div>
+						</li>
+						{/foreach}
+						
+					</ul>
+				</div>
+				
+		</div>
+		<div>{$page}</div>
+	 </div>		
+<script type="text/javascript">
+				
+				//户型点击
+				$(document).on("click",".comtype",function(){
+					var leixingid = $(this).find(".huxingid").val();//获取类型id
+					$("#huxing").val(leixingid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				});
+				//类型删除
+				jq(document).on("click",".comtypedel",function(){
+					var leixingid = "";//获取类型id
+					$("#huxing").val(leixingid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				})
+				//风格
+				jq(document).on("click",".comstyle",function(){
+					var zhuanchangfgid = $(this).find(".fenggeid").val();//获取类型id
+					$("#fengge").val(zhuanchangfgid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				});
+				//风格删除
+				jq(document).on("click",".comstyledel",function(){
+					var zhuanchangfgid = "";//获取类型id
+					$("#fengge").val(zhuanchangfgid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				});
+				//面积
+				jq(document).on("click",".comsmj",function(){
+					var mianjiid = $(this).find(".mianjiid").val();//获取类型id
+					$("#mianji").val(mianjiid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				});
+				//面积删除
+				jq(document).on("click",".comsmjdel",function(){
+					var zhuanchangfgid = "";//获取类型id
+					$("#mianji").val(zhuanchangfgid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				});
+				//公装
+				jq(document).on("click",".comsgz",function(){
+					var gzid = $(this).find(".gzid").val();//获取类型id
+					$("#gongzhuang").val(gzid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				});
+				//公装删除
+				jq(document).on("click",".comsgzdel",function(){
+					var zhuanchangfgid = "";//获取类型id
+					$("#gongzhuang").val(zhuanchangfgid);//赋值
+					$("#jiaojianquyu").submit();//提交form
+				});
+			</script>
+<script type="text/javascript" src="http://testuc.zhuyitai.com.cn/common/js/jquery-1.9.1.min.js"></script>
+	<script>
+	        // tab手风琴
+var nav_left = document.getElementById("nav_left");
+var list = getByClassName(nav_left,'img-xiajian');
+var img = nav_left.getElementsByTagName('img');
+var detail = getByClassName(nav_left,'middle-yin');
+function dianji(){
+for (var i = 0; i < detail.length; i++) {
+    (function(index){
+        detail[index].style.display = "none";
+    })(i);
+    }
+for(var i = 0; i< list.length; i++){
+    (function(value){
+        list[value].onclick = function(){
+
+             toggle(detail[value],img[value]);
+        }
+        })(i);
+    }
+}
+dianji();
+function toggle(element,img){
+    if(element.style.display == "block"){
+        element.style.display = "none";
+            img.src = "__STATIC__/index/tucei/images/down.jpg";
+    }
+    else if(element.style.display == "none"){
+            element.style.display = "block";
+            img.src = "__STATIC__/index/tucei/images/up.jpg";
+        }
+    else{
+        alert('chucuo');
+    }
+}
+
+
+function getByClassName(obj,cls){
+// obj目标元素，cls要获得的class名
+
+var element = obj.getElementsByTagName('*');//将目标下的所有子元素获取到
+
+var result = []; //定义一个数组，存放获得的classname = "cls" 的所有值
+
+for(var i = 0; i< element.length; i++){
+
+if(element[i].className == cls){
+
+result.push(element[i]);
+
+}
+
+}
+
+return result;
+
+}
+
+	    var lis = document.querySelectorAll('.middle-yin dd ');
+                for(var i=0;i<lis.length;i++){
+                lis[i].setAttribute("index",i);
+                lis[i].onclick=function(){
+                for(var i=0;i<lis.length;i++){
+                    if(this.getAttribute("index")==i){
+                        lis[i].style.color="#01af63";
+                         lis[i].style.fontWeight='bold';
+                    }else{
+                        lis[i].style.color="";
+                        lis[i].style.fontWeight="";
+                    }
+                }
+            }
+        }
+// 点击字体
+  $(document).ready(function(){
+    $('.deall-middle dd a').click(function(){
+        if ($(this).hasClass('focus')) {
+            return true;
+        } else {
+            $('.middle-middle a').removeClass('focus');
+            $(this).addClass('focus');
+        }
+    });
+});
+</script>
+<script type="text/javascript">
+        $(document).ready(function(){
+            $(".have-arrow").each(function(){
+                $(this).attr("class","have-arrow");
+            });
+            $(".have-arrow").eq(1).attr("class","have-arrow on");
+        });
+    </script>
+{/block}

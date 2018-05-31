@@ -1,0 +1,422 @@
+{extend name="layoutextend"}
+{block name="nav"}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <title></title>
+<script type="text/javascript">
+  //缩略图添加
+    function imgPreviews(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("previews");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    //缩略图修改
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+
+        //获取文件
+        var file = fileDom.files[0];
+        var imageType = /^image\//;
+        //是否是图片
+        if (!imageType.test(file.type)) {
+            alert("请选择图片！");
+            return;
+        }
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    </script>   
+</head>
+<body>
+<div style="margin-left: 2%;margin-right: 2%; margin-top: 1%;">
+        <h1 style="text-align: center;">攻略</h1>
+<button class="btn" style="margin-top: -5%;" id="showModel">添加攻略</button> 
+        <!-- <form style="display: none;" class="well form-search" method="post" action="{:url('/admin/shop/index')}">
+            <div class="search_type cc mb10" style="margin-top: -4%;margin-left: 70%;">
+                    <span class="mr20">
+
+
+                        <input type="text" name="keyword" style="width: 160px;" value="" placeholder="请输入关键字...">
+
+                        <input type="submit" class="btn btn-primary" value="搜索" />
+                    </span>
+            </div>
+        </form>  -->
+        <div class="hei"></div>
+    <table class="table table-bordered" >
+
+        <thead>
+            <tr>
+                <!-- <th>id</th> -->
+                <th>编号</th>
+                <th>攻略标题</th>
+                <th>攻略logo</th>
+                <th>攻略类别</th>
+                <th>攻略来源</th>
+                <th>攻略浏览量</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="yuansuzhijia">
+            <tr><td style="display: none;">{$i=1}</td></tr>
+            {foreach name="res" item="vores"}
+            
+                <tr>
+                    <td ><span class="lbtid">{$vores.id}</span></td>
+                    <td ><span class="title">{$vores.title}</span></td>
+                    <td><span class="img"><img src="__STATIC__/uploads/{$vores.logo}" style="width:50px;height: 50px" ></span></td>
+                    <td ><span class="">{$vores.ztyid|gongluezhuleibie=###}</span></td>
+                    <td ><span class="laiyuan">{$vores.laiyuan}</span></td>
+                    <td ><span class="liulannum">{$vores.liulannum}</span></td>
+                    <td style="display: none;"><span class="ztyid">{$vores.ztyid}</span></td>
+                    <td style="display: none;"><span class="ftyid">{$vores.ftyid}</span></td>
+                    <td style="display: none;"><span class="daodu">{$vores.daodu}</span></td>
+                    <td style="display: none;"><span class="time_fb">{$vores.time_fb}</span></td>
+                    <td>
+                        <span style=" cursor: pointer;" class="showModel2">修改</span> | 
+                        <span style=" cursor: pointer;" class="delcom">删除</span> | 
+                        <span style=" cursor: pointer;" ><a href="{:url('admin/gled/index',['strid'=>$vores['id']])}">子类别</a></span> | 
+                    </td>
+                </tr>
+            {/foreach}
+            
+        </tbody>
+    </table>
+        <div>{$page}</div>
+</div>
+
+<!-- 模态框 -->
+<div>
+     <!-- 模态框添加 -->
+    <div id="modal" class="modal">  
+        <div class="modal-content">  
+            <header class="modal-header">  
+                <h4>添加攻略</h4>  
+                <span class="close">×</span>  
+            </header>  
+            <div class="modal-body">  
+                <form id="formsubadd" class="form-inline" method="post" enctype="multipart/form-data" action="{:url('admin/gonglue/add')}" >
+                <table  style="border-collapse:separate; border-spacing:10px; width: 100%;" >
+                    <tr>
+                        <td class='wid'>攻略标题</td>
+                        <td>
+                            <input type="text" class="form-control" name="title" placeholder="请输入名称">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>攻略logo</td>
+                        <td>
+                            <img id="previews" width="100px" />
+                              <br />
+                            <input type="file" name="logo" onchange="imgPreviews(this)" />
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>攻略类别</td>
+                        <td>
+                            <select name="ztyid" class="glzhuleibie"> 
+                            <option value ="0">请选择主类别</option>  
+                              {foreach name="reslb" item="voreslb"}
+                               <span ><option value ="{$voreslb.id}">{$voreslb.name}</option></span>  
+                              {/foreach}
+                            </select>
+                            <span id="citySpan">
+                                <select id="fuleibie" name="ftyid">
+                                    <option value="0">请选择副类别</option>
+                                </select>
+                            </span>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>来源</td>
+                        <td>
+                            <input type="text" class="form-control" name="laiyuan" placeholder="请输入来源">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>浏览量</td>
+                        <td>
+                            <input type="text" class="form-control" name="liulannum" placeholder="请输入浏览量">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>导读</td>
+                        <td>
+                            <input type="text" class="form-control" name="daodu" placeholder="请输入导读">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>时间</td>
+                        <td>
+                            <input type="date" class="form-control" name="time_fb" placeholder="请输入导读">
+                        </td>
+                    </tr>
+                    <!-- 类别筛选 -->
+                    <script type="text/javascript">
+                            $(".glzhuleibie").change(function(){
+                                var provinceid=$(this).val();
+                                  $.ajax({
+                                    type:"post",
+                                    dataType:'json',
+                                    async:false,
+                                    url:'{:url("admin/Gonglue/zileibie")}',
+                                    data:{"provinceid":provinceid},
+                                     success:function(city){
+                                        console.log(city);
+                                        var str = '<option value="0">请选择副类别</option>';
+                                         $(city).each(function (i,dom){
+                                              str += '<option value="'+dom['id']+'">'+dom['name']+'</option>';                                                   
+                                         });
+                                         $("#fuleibie").html(str);
+                                         //console.log(city);
+                                         
+                                        }
+                                 })
+                            });
+                    </script>
+                    </table>
+            </form> 
+            </div>  
+            <footer class="modal-footer">  
+                <button type="button" id="cancel">取消</button>  
+                <button type="button" id="sure">确定</button>  
+            </footer> 
+            
+        </div>  
+    </div> 
+
+    <!-- 模态框修改 -->
+    <div id="modal2" class="modal">  
+        <div class="modal-content">  
+            <header class="modal-header">  
+                <h4>攻略修改</h4>  
+                <span class="close2">×</span>  
+            </header>  
+            <div class="modal-body">  
+                <form id="formsubedit" class="form-inline" method="post" enctype="multipart/form-data" action="{:url('admin/gonglue/edit')}" >
+                <table  style="border-collapse:separate; border-spacing:10px; width: 100%;" >
+                <input type="hidden" name="id" id="lbtid">
+                    <tr>
+                        <td class='wid'>攻略标题</td>
+                        <td>
+                            <input type="text" class="form-control" name="title" id="title" placeholder="请输入名称">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>攻略logo</td>
+                        <td id="editlogo">
+                            <img id="previews" width="100px" />
+                              <br />
+                            <input type="file" name="logo" onchange="imgPreviews(this)" />
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>攻略类别</td>
+                        <td>
+                            <select name="ztyid" id="editleibie" class="glzhuleibiedo"> 
+                            <option value ="0">请选择主类别</option>  
+                              {foreach name="reslb" item="voreslb"}
+                               <span ><option value ="{$voreslb.id}">{$voreslb.name}</option></span>  
+                              {/foreach}
+                            </select>
+                            <span >
+                                <select id="fuleibiedo" name="ftyid">
+                                    <option value="0">请选择副类别</option>
+                                </select>
+                            </span>
+                            
+                        </td>
+                    </tr>
+                     <!-- 类别筛选 -->
+                    <script type="text/javascript">
+                            $(".glzhuleibiedo").change(function(){
+                                var provinceid=$(this).val();
+                                  $.ajax({
+                                    type:"post",
+                                    dataType:'json',
+                                    async:false,
+                                    url:'{:url("admin/Gonglue/zileibie")}',
+                                    data:{"provinceid":provinceid},
+                                     success:function(city){
+                                        console.log(city);
+                                        var str = '<option value="0">请选择副类别</option>';
+                                         $(city).each(function (i,dom){
+                                              str += '<option value="'+dom['id']+'">'+dom['name']+'</option>';                                                   
+                                         });
+                                         $("#fuleibiedo").html(str);
+                                         //console.log(city);
+                                         
+                                        }
+                                 })
+                            });
+                    </script>
+                    <tr>
+                        <td class='wid'>来源</td>
+                        <td>
+                            <input type="text" class="form-control" name="laiyuan" id="laiyuan" placeholder="请输入来源">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>浏览量</td>
+                        <td>
+                            <input type="text" class="form-control" name="liulannum" id="liulannum" placeholder="请输入浏览量">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>导读</td>
+                        <td>
+                            <input type="text" class="form-control" name="daodu" id="daodu" placeholder="请输入导读">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='wid'>时间</td>
+                        <td>
+                            <input type="date" class="form-control" name="time_fb" id="time_fb" placeholder="请输入导读">
+                        </td>
+                    </tr>
+                    </table>
+            </form> 
+            </div>   
+            <footer class="modal-footer">  
+                <button type="button" id="cancel2">取消</button>  
+                <button type="button" id="sure2">确定</button>  
+            </footer>
+        </div>  
+    </div>  
+</div>
+</body>
+<!-- 模态框js -->
+<script>  
+// 添加
+
+    var btn = document.getElementById('showModel');  
+    var close = document.getElementsByClassName('close')[0];  
+    var cancel = document.getElementById('cancel');  
+    var sure = document.getElementById('sure');  
+    var modal = document.getElementById('modal');  
+    btn.addEventListener('click', function(){
+        modal.style.display = "block";  
+    });  
+    close.addEventListener('click', function(){  
+        modal.style.display = "none";  
+    });  
+    cancel.addEventListener('click', function(){  
+        modal.style.display = "none";  
+    });  
+     
+    sure.addEventListener('click', function(){  
+        // 获取信息
+            $("#formsubadd").submit();
+        
+        
+    });
+    // 修改   
+    var close2 = document.getElementsByClassName('close2')[0];  
+    var cancel2 = document.getElementById('cancel2');  
+    var sure2 = document.getElementById('sure2');  
+    var modal2 = document.getElementById('modal2'); 
+    //模态框展示 
+    $(".showModel2").click(function(){
+        // 获取案例id
+        var lbtid = $(this).parent().parent().find(".lbtid").html();
+        var title = $(this).parent().parent().find(".title").html();
+        var laiyuan = $(this).parent().parent().find(".laiyuan").html();
+        var liulannum = $(this).parent().parent().find(".liulannum").html();
+        var daodu = $(this).parent().parent().find(".daodu").html();
+        var time_fb = $(this).parent().parent().find(".time_fb").html();
+        var src = $(this).parent().parent().find(".img img").attr("src");
+        // 类别
+         var ztyid = $(this).parent().parent().find(".ztyid").html();
+         var ftyid = $(this).parent().parent().find(".ftyid").html();
+         // alert(ftyid);
+        $("#editleibie").find("option[value = '"+ztyid+"']").attr("selected","selected");
+        $("#fuleibiedo").find("option[value = '"+ftyid+"']").attr("selected","selected");
+        $("#lbtid").val(lbtid);
+        $("#title").val(title);
+        $("#laiyuan").val(laiyuan);
+        $("#liulannum").val(liulannum);
+        $("#daodu").val(daodu);
+        $("#time_fb").val(time_fb);
+        $("#editlogo img").attr("src",src);
+        // alert(src);
+        modal2.style.display = "block";  
+    });
+    close2.addEventListener('click', function(){  
+        modal2.style.display = "none";  
+    }); 
+    cancel2.addEventListener('click', function(){  
+        modal2.style.display = "none";  
+    });  
+    //执行修改
+    sure2.addEventListener('click', function(){
+        // 获取信息
+            $("#formsubedit").submit();
+        
+        
+    });
+    // 执行删除
+    $(".delcom").click(function(){
+        if(confirm("确定删除该类型吗？")){
+            var lbtid = $(this).parent().parent().find(".lbtid").html();
+            // alert(planid);return false;
+            $(this).parent().parent().remove();
+            // console.log(aa);return false;
+            $.ajax({
+                type:"post",
+                dataType:'json',
+                async:false,
+                url:'{:url("/admin/gonglue/del")}',
+                data:{"lbtid":lbtid},
+                success:function(dd){
+                    // alert(dd);
+                 //    console.log(dd);
+                    if (dd.code == 200) {
+                        //jq 删除元素
+
+                    }else{
+                        alert(msg);
+                    }
+                     
+                }
+            })
+        }
+    });
+</script> 
+</html>
+{/block}

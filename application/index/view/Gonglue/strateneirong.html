@@ -59,7 +59,7 @@
                             <div class="neirrtilte">相关推荐</div>
                             <div class="neirrpai_new">
                                 {foreach name="resxgtjgl" item="voresxgtjgl"}
-                                <a href="#"><span style="color:#E53333;">{$voresxgtjgl.title}</span></a><br>
+                                <a href="{:url('/strateneirong',array('strid'=>$voresxgtjgl['id']))}"><span style="color:#E53333;">{$voresxgtjgl.title}</span></a><br>
                                 {/foreach}
                                 <div style="clear: both;"></div>
                             </div>
@@ -70,11 +70,11 @@
 
                     <div class="textdown">
                         <div class="shangxiab clearfix">
-                            <p class="text_ov clearfix"><span>上一篇:</span>
-                                <a href="#">夏季收房后可以马上装修吗？</a>
+                            <p class="text_ov clearfix"><span>{neq name="$sqlmax['0']['title']" value=""}上一篇:{/neq}</span>
+                                <a href="{:url('/strateneirong',array('strid'=>$sqlmax['0']['id']))}">{$sqlmax['0']['title']}</a>
                             </p>
-                            <p class="text_ov clearfix"><span>下一篇:</span>
-                                <a href="#">7月博若森首届清凉家装节 让你在家轻松装修</a>
+                            <p class="text_ov clearfix"><span>{neq name="$sqlmin['0']['title']" value=""}下一篇:{/neq}</span>
+                                <a href="{:url('/strateneirong',array('strid'=>$sqlmin['0']['id']))}">{$sqlmin['0']['title']}</a>
                             </p>
                         </div>
                         <div class="textdowndown">
@@ -578,7 +578,7 @@
             $(".have-arrow").each(function(){
                 $(this).attr("class","have-arrow");
             });
-            $(".have-arrow").eq(2).attr("class","have-arrow on");
+            $(".have-arrow").eq(3).attr("class","have-arrow on");
         });
     </script>
 </div>

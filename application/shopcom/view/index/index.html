@@ -55,7 +55,7 @@
 
     <ul>
         {foreach name="lbt" item="volbt"} 
-        <li><img class="sliderimg" src="__STATIC__/uploads/{$volbt.shop_logo}" alt="" width="20%" height="280px" style="width: 100%"></li>
+        <li><a href=""><img class="sliderimg" src="__STATIC__/uploads/{$volbt.shop_logo}" alt="" width="20%" height="280px" style="width: 100%"></a></li>
         {/foreach}
 
     </ul>
@@ -178,7 +178,7 @@
 </div><div class="information_tender ">
     <div class="information ">
         <div class="nav_menu_title ">
-            <a target="_blank " href="http://bj.bzw315.com/shop/78219/news/ " title=" {$shopcom[0]['name_jc']}更多 " class="navbar-menu-more ">更多</a>
+            <a target="_blank " href="{:url('/sczixun',['comid'=>$shopcom[0]['id']])} " title=" {$shopcom[0]['name_jc']}更多 " class="navbar-menu-more ">更多</a>
             <h3>资讯<span> {$shopcom[0]['name_jc']}资讯(<i>{$articlecount}</i>)</span></h3>
         </div>
         <div class="img_txt ">
@@ -194,7 +194,7 @@
     </div>
     <div class="tender ">
         <div class="nav_menu_title ">
-            <span class="discount "><a href="http://bj.bzw315.com/shop/78219/youhui/ "><span>优惠券 5000元</span></a></span>
+            <span class="discount "><a href="{:url('/schuodong',['comid'=>$shopcom[0]['id']])} "><span>优惠券 5000元</span></a></span>
             <h3>招标<span>已有<em class="num ">1825716</em>位业主免费发布招标</span></h3>
         </div>
         <div class="free ">
@@ -211,12 +211,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                     {foreach name="rese" item="re"}
                         <tr>
-                            <td>小（先生）</td>
+                            <td>{$re.name}</td>
                             <td title="北京-北京市-大兴区 ">北京-北京市...</td>
-                            <td>110㎡</td>
-                            <td>面议</td>
+                            <td>{$re.mianji}㎡</td>
+                            <td>{$re.zhuangxiujine}</td>
                         </tr>
+                        {/foreach}
                         <tr>
                             <td>王（女士）</td>
                             <td title="北京-北京市-顺义区 ">北京-北京市...</td>
